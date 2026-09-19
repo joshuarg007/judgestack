@@ -11,7 +11,8 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { generateText, stepCountIs } from 'ai'
 import { getModel, modelLabel } from '../agent/model'
 import { SYSTEM_PROMPT } from '../agent/prompt'
-import { lexicalTools } from './lexical'
+import { getRig } from '../agent/retrieval'
+import { answer } from '../agent/answer'
 import { scoreOne, summarize, type Case } from './score'
 
 const arg = (f: string) => { const i = process.argv.indexOf(f); return i > -1 ? process.argv[i + 1] : undefined }
@@ -27,41 +28,27 @@ if (tuningOnly) cases = cases.filter((c) => !holdoutHashes.has(c.hash))
 const model = (await getModel()) as any
 console.log(`model=${modelLabel}  condition=${condition}  cases=${cases.length}  holdouts ${tuningOnly ? 'EXCLUDED' : 'included'}\n`)
 
-async function buildTools() {
-  if (condition === 'lexical') {
-    const { tools, retrieved } = lexicalTools()
-    return { tools, getRetrieved: () => retrieved.splice(0) }
-  }
-  if (condition === 'structured') {
-    const { connectGroq, connectKnowledgeBase } = await import('../agent/mcp')
-    const groq = await connectGroq()
-    const kb = await connectKnowledgeBase()
-    return { tools: { ...groq.tools, ...kb.tools }, getRetrieved: () => [] as any[], close: async () => { await groq.client.close(); await kb.client.close() } }
-  }
-  throw new Error(`unknown condition ${condition}`)
-}
+process.env.JUDGESTACK_RETRIEVAL = condition
+const rig = await getRig()
+console.log(`retrieval: ${rig.label}\n`)
 
-const rig = await buildTools()
 const rows: any[] = []
 
 for (const [i, c] of cases.entries()) {
-  const started = Date.now()
-  let answer = '', toolText = '', ids: string[] = []
+  let row: any
   try {
-    const res = await generateText({
-      model, system: SYSTEM_PROMPT, prompt: c.question,
-      tools: rig.tools as any, stopWhen: stepCountIs(10) as any,
-    })
-    answer = res.text
-    const results = res.steps.flatMap((s) => s.toolResults ?? [])
-    toolText = JSON.stringify(results)
-    ids = [...new Set([...toolText.matchAll(/"id":"([^"]+)"/g)].map((m) => m[1]))]
+    const r = await answer(c.question, rig)
+    const score = scoreOne(c, { answer: r.answer, retrievedIds: r.retrievedIds, retrievedText: r.evidenceForScoring })
+    row = { ...score, latencyMs: r.latencyMs, typedOk: !!r.typed, typedError: r.typedError,
+            noRetrieval: r.noRetrieval, question: c.question, answer: r.answer }
   } catch (e) {
-    answer = `ERROR: ${(e as Error).message}`
+    row = { hash: c.hash, questionType: c.questionType, error: (e as Error).message,
+            requiredRulesCited: false, requiredCardsRetrieved: false, citedRulesWereRetrieved: false,
+            completeQuotedText: null, dateDiscipline: null, unsupportedCitations: [],
+            question: c.question, answer: '' }
   }
-  const score = scoreOne(c, { answer, retrievedIds: ids, retrievedText: toolText })
-  rows.push({ ...score, latencyMs: Date.now() - started, question: c.question, answer })
-  process.stdout.write(`  ${i + 1}/${cases.length} ${score.citedRulesWereRetrieved ? '.' : 'X'}`)
+  rows.push(row)
+  process.stdout.write(`  ${i + 1}/${cases.length} ${row.citedRulesWereRetrieved ? '.' : 'X'}`)
 }
 console.log('\n')
 

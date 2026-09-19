@@ -29,6 +29,7 @@ export type AnswerResult = {
   retrievedRuleNumbers: string[]
   unsupportedCitations: string[]
   latencyMs: number
+  evidenceForScoring: string
 }
 
 import type { Rig } from './retrieval'
@@ -106,6 +107,7 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
     noRetrieval,
     retrievedIds: ids,
     retrievedRuleNumbers: [...retrieved.ruleNumbers],
+    evidenceForScoring: evidence,
     unsupportedCitations: unsupportedCitations(draft, retrieved),
     latencyMs: Date.now() - started,
   }
