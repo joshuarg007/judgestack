@@ -1,3 +1,4 @@
+import './env'
 import { createClient } from '@sanity/client'
 import { createHash } from 'node:crypto'
 

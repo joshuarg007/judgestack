@@ -9,6 +9,7 @@
  * in the writeup. An evaluation that does not say which model produced it is not
  * an evaluation. Both retrieval conditions must run on the SAME model.
  */
+import '../scripts/lib/env'
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible'
 
 const provider = process.env.JUDGESTACK_PROVIDER ?? 'ollama'
