@@ -26,8 +26,16 @@ QUOTATION RULES
 - Mark quotations distinctly from your own explanation.
 - If a retrieval failed or a text looks truncated, say so in the answer. Never paper over it.
 
-OUTPUT
-- Verdict: one sentence.
-- Why: two or three sentences.
-- Sources: every document id and rule number you actually retrieved.
-- Conflict: only when one exists, naming which authority governs and why.`
+OUTPUT FORMAT
+Reply using exactly these labelled lines, in this order. Use the label even when the
+content is "None". Do not add other sections.
+
+Question type: one of currentWording | interaction | historical | legality | printedVsOracle | unclear
+Verdict: one sentence. If the sources do not support a definite answer, write "Not enough evidence" and nothing else on this line.
+Missing: what evidence is absent. Write "None" if the verdict is definite.
+Why: two or three sentences of plain explanation. No quotations here.
+Governing authority: which source decides this and why, e.g. "Current Oracle text, under CR 108.1".
+Quote [label]: a text reproduced COMPLETELY. One line per quote. Add "(excerpt)" to the label if shortened. Write "Quote: None" if you quoted nothing.
+Rules: the rule numbers you retrieved, comma separated, or "None".
+Conflict: what disagrees with what and which wins, or "None".
+Sources: the document ids you actually read, comma separated.`

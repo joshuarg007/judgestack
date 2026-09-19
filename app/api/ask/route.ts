@@ -11,12 +11,12 @@ export async function POST(req: NextRequest) {
   }
   const rig = await getRig()
   try {
-    const result = await answer(question, rig.tools)
+    const result = await answer(question, rig)
     return NextResponse.json({ ...result, retrieval: rig.label })
   } catch (e) {
     // No silent fallback: a retrieval or model failure is reported as a failure.
     return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   } finally {
-    await rig.close?.()
+    await (rig as any).close?.()
   }
 }

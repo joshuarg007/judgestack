@@ -12,16 +12,18 @@ import { generateText, stepCountIs } from 'ai'
 import { getModel, modelLabel, systemSuffix } from './model'
 import { SYSTEM_PROMPT } from './prompt'
 import { AnswerSchema, type TypedAnswer } from './schema'
-import { generateTyped } from './typed'
+import { parseAnswer, attachRuleText } from './parse'
 import { collectRetrieved, unsupportedCitations } from './verify'
 
 export type AnswerResult = {
   model: string
+  retrieval: string
   question: string
   answer: string
   typed: TypedAnswer | null
   typedError: string | null
-  reasoningOnly: boolean
+  finalized: boolean
+  noRetrieval: boolean
   toolCalls: string[]
   retrievedIds: string[]
   retrievedRuleNumbers: string[]
@@ -29,57 +31,79 @@ export type AnswerResult = {
   latencyMs: number
 }
 
-const SHAPE_HINT = {
-  questionType: 'currentWording | interaction | historical | legality | printedVsOracle | unclear',
-  verdict: 'one sentence',
-  enoughEvidence: true,
-  missing: '',
-  reasoning: 'two or three sentences',
-  governingAuthority: 'which source governs and why',
-  quotations: [{ label: 'Current Oracle text', text: 'the complete text', complete: true }],
-  ruleCitations: [{ number: '108.1', text: 'the rule text as retrieved' }],
-  conflict: { present: false, explanation: '' },
-}
+import type { Rig } from './retrieval'
 
-export async function answer(question: string, tools: Record<string, unknown>): Promise<AnswerResult> {
+export async function answer(question: string, rig: Rig): Promise<AnswerResult> {
   const started = Date.now()
   const model = (await getModel()) as any
 
-  const res = await generateText({
-    model, system: SYSTEM_PROMPT + systemSuffix, prompt: question,
-    tools: tools as any, stopWhen: stepCountIs(10) as any,
-  })
+  let draft = ''
+  let toolCallNames: string[] = []
+  let evidence = ''
+  let ids: string[] = []
+  let finalized = false
 
-  const stripped = res.text.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
-  // A turn that produced only reasoning leaves nothing after stripping. Keep the
-  // reasoning rather than returning a blank answer, and say that is what happened.
-  const reasoningOnly = stripped.length === 0 && res.text.trim().length > 0
-  const draft = stripped || res.text.replace(/<\/?think>/gi, '').trim()
-  const toolResults = res.steps.flatMap((s) => s.toolResults ?? [])
-  const retrieved = collectRetrieved(toolResults as never)
-  const ids = [...new Set([...JSON.stringify(toolResults).matchAll(/"id":"([^"]+)"/g)].map((m) => m[1]))]
+  const clean = (t: string) => t.replace(/<think>[\s\S]*?<\/think>/gi, '').replace(/<\/?think>/gi, '').trim()
 
-  const shaped = await generateTyped<TypedAnswer>({
-    model,
-    schema: AnswerSchema,
-    system:
-      'Convert the material below into the required structure. Use ONLY what is present in it. ' +
-      'Do not add rules, wordings, dates or facts from your own knowledge. ' +
-      'Quote texts completely; if you must shorten one, set complete to false. ' +
-      'If the material does not support a definite answer, set enoughEvidence to false and say what is missing.',
-    prompt: `SHAPE\n${JSON.stringify(SHAPE_HINT)}\n\nQUESTION\n${question}\n\nRETRIEVED EVIDENCE\n${JSON.stringify(toolResults).slice(0, 40000)}\n\nDRAFT ANSWER\n${draft}`,
-  })
-  const typed = shaped.object
-  const typedError = shaped.error
+  if (rig.kind === 'context') {
+    // Evidence is retrieved first and injected. The model never chooses what to read.
+    const got = rig.build(question)
+    evidence = got.text
+    ids = got.ids
+    const res = await generateText({
+      model,
+      system: SYSTEM_PROMPT + systemSuffix,
+      prompt: `RETRIEVED EVIDENCE\n${evidence}\n\nQUESTION\n${question}`,
+    })
+    draft = clean(res.text)
+  } else {
+    const res = await generateText({
+      model, system: SYSTEM_PROMPT + systemSuffix, prompt: question,
+      tools: rig.tools as any, stopWhen: stepCountIs(10) as any,
+    })
+    draft = clean(res.text)
+    toolCallNames = res.steps.flatMap((s) => (s.toolCalls ?? []).map((c: any) => c.toolName))
+    const toolResults = res.steps.flatMap((s) => s.toolResults ?? [])
+    evidence = JSON.stringify(toolResults)
+    ids = [...new Set([...evidence.matchAll(/"id":"([^"]+)"/g)].map((m) => m[1]))]
+
+    // Qwen3 intermittently ends a tool loop with an empty assistant message.
+    // Replay the transcript once, no tools, no new evidence.
+    if (!draft) {
+      const again = await generateText({
+        model,
+        system: SYSTEM_PROMPT + systemSuffix,
+        messages: [
+          { role: 'user', content: question },
+          ...(res.response.messages as any),
+          { role: 'user', content: 'Give the final answer now, using the required labelled format. Use only the evidence already retrieved above.' },
+        ] as any,
+      })
+      draft = clean(again.text)
+      finalized = true
+    }
+  }
+
+  const retrieved = collectRetrieved([{ result: evidence }] as never)
+  // An answer with no evidence behind it is memory, not retrieval.
+  const noRetrieval = ids.length === 0 && !evidence
+
+  const parsed = noRetrieval
+    ? { typed: null, error: 'the model answered without retrieving anything; refusing to present it' }
+    : parseAnswer(draft)
+  const typed = parsed.typed ? attachRuleText(parsed.typed, evidence) : null
+  const typedError = parsed.error
 
   return {
     model: modelLabel,
+    retrieval: rig.label,
     question,
     answer: draft,
     typed,
     typedError,
-    reasoningOnly,
-    toolCalls: res.steps.flatMap((s) => (s.toolCalls ?? []).map((c: any) => c.toolName)),
+    finalized,
+    toolCalls: toolCallNames,
+    noRetrieval,
     retrievedIds: ids,
     retrievedRuleNumbers: [...retrieved.ruleNumbers],
     unsupportedCitations: unsupportedCitations(draft, retrieved),

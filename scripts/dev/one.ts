@@ -2,8 +2,8 @@ import { answer } from '../../agent/answer'
 import { getRig } from '../../agent/retrieval'
 const q = process.argv.slice(2).join(' ') || 'My Alpha copy of Word of Command says I choose a card my opponent can legally play. What does it actually do now?'
 const rig = await getRig()
-const r = await answer(q, rig.tools)
-await rig.close?.()
+const r = await answer(q, rig)
+await (rig as any).close?.()
 console.log('model:', r.model, '| retrieval:', rig.label, '|', (r.latencyMs / 1000).toFixed(1) + 's')
 console.log('typed:', r.typed ? 'OK' : `FAILED (${r.typedError})`)
 console.log('unsupported citations:', r.unsupportedCitations.length ? r.unsupportedCitations.join(', ') : 'none')
