@@ -5,7 +5,10 @@
  *
  *   npm run review                        # walk every unreviewed difference
  *   npm run review -- --card "Mana Vault" # one card
- *   npm run review -- --redo              # include already-reviewed differences
+ *   npm run review -- --redo              # revisit reviewed ones, confirming drafts
+ *
+ * Each judgment is committed as it is made. An earlier version batched every write
+ * until the end, so quitting partway lost the whole session.
  *
  * Differences that share identical printed AND Oracle text are reviewed once and
  * the judgment applied to every printing in the group. Alpha, Beta and Unlimited
@@ -23,7 +26,9 @@ const rows: any[] = await client.fetch(
   `*[_type=="textDifference" ${redo ? '' : '&& reviewState=="unreviewed"'} ${only ? '&& card->name == $n' : ''}]{
      _id, similarity,
      "cardId": card->_id, "card": card->name, "oracle": card->oracleText,
-     "printingId": printing->_id, "set": printing->setName, "printed": printing->originalText
+     "printingId": printing->_id, "set": printing->setName, "printed": printing->originalText,
+     "draft": *[_type=="decision" && questionType=="printedVsOracle" && confirmedByHuman != true][0].resolution,
+     "draftMethod": *[_type=="decision" && questionType=="printedVsOracle" && confirmedByHuman != true][0].reviewMethod
    } | order(card asc)`,
   only ? { n: only } : {},
 )
@@ -42,7 +47,6 @@ const rl = createInterface({ input: stdin, output: stdout })
 const rule = await client.fetch(
   `*[_type=="ruleParagraph" && number=="108.1"] | order(effectiveFrom desc)[0]._id`,
 )
-const writes: Record<string, unknown>[] = []
 
 /** Readline delivers a pasted block one line at a time; keep reading until blank. */
 async function readParagraph(prompt: string): Promise<string> {
@@ -58,12 +62,14 @@ async function readParagraph(prompt: string): Promise<string> {
 }
 
 let n = 0
+let reviewed = 0
 for (const [, group] of groups) {
   n++
   const r = group[0]
   const sets = group.map((g) => g.set).join(', ')
   console.log(`\n--- ${n}/${groups.size}  ${r.card}  similarity ${r.similarity}`)
   console.log(`    ${group.length} printing${group.length > 1 ? 's' : ''}: ${sets}`)
+  if (redo && r.draft) console.log(`    existing draft (${r.draftMethod}): ${r.draft}`)
   console.log(`PRINTED: ${norm(r.printed)}`)
   console.log(`ORACLE : ${norm(r.oracle)}`)
 
@@ -82,6 +88,7 @@ for (const [, group] of groups) {
     }
   }
 
+  const writes: Record<string, unknown>[] = []
   for (const g of group) {
     writes.push({
       _id: g._id, _type: 'textDifference', reviewState: state,
@@ -99,15 +106,21 @@ for (const [, group] of groups) {
       claims: [],
       resolution: note,
       supportingRule: rule ? { _type: 'reference', _ref: rule } : undefined,
+      reviewMethod: 'human',
+      confirmedByHuman: true,
       reviewedBy: process.env.USER ?? 'unknown',
       reviewedAt: new Date().toISOString(),
     })
-    console.log(`  recorded, applied to ${group.length} printing${group.length > 1 ? 's' : ''}`)
   }
+
+  // Commit per judgment, not at the end, so quitting keeps what you decided.
+  await commit(writes)
+  reviewed += group.length
+  console.log(`  saved, applied to ${group.length} printing${group.length > 1 ? 's' : ''}`)
 }
 
 rl.close()
-if (!writes.length) { console.log('\nnothing written'); process.exit(0) }
-console.log(`\nwriting ${writes.length} documents`)
-await commit(writes)
-console.log('done')
+console.log(`\n${reviewed} difference${reviewed === 1 ? '' : 's'} saved this session`)
+
+const pending = await client.fetch(`count(*[_type=="decision" && confirmedByHuman != true])`)
+if (pending) console.log(`${pending} decision${pending === 1 ? '' : 's'} still marked model-assisted and unconfirmed. Run with --redo to confirm them.`)

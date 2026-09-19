@@ -22,7 +22,8 @@
     "build": "next build",
     "start": "next start",
     "studio": "sanity dev",
-    "ingest:glossary": "tsx scripts/ingest-glossary.ts"
+    "ingest:glossary": "tsx scripts/ingest-glossary.ts",
+    "apply:assisted": "tsx scripts/apply-assisted.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",

@@ -1,0 +1,199 @@
+{
+  "note": "Model-assisted classifications of printed-vs-Oracle differences, produced by Claude and written with reviewMethod='model-assisted' and confirmedByHuman=false. They are DRAFTS. Any writeup must say so until a human confirms them with `npm run review -- --redo`. Ancestral Recall was judged functional by Joshua during the interactive pass but the write was lost when the session ended; humanAgreed marks it.",
+  "classifiedOn": "2026-09-19",
+  "items": [
+    {
+      "card": "Ancestral Recall",
+      "match": "Draw 3 cards or force opponent",
+      "verdict": "f",
+      "why": "Untargeted \"you or your opponent\" became \"target player\", so the spell now uses targeting, can be stopped by hexproof or shroud, fizzles if the target becomes illegal, and in multiplayer can select any player.",
+      "humanAgreed": true
+    },
+    {
+      "card": "Benalish Hero",
+      "match": "Bands",
+      "verdict": "n",
+      "why": "\"Bands\" was shorthand for the banding keyword; the Oracle text is the same ability with its reminder text spelled out. Lowest similarity in the set at 0.025 and no functional change."
+    },
+    {
+      "card": "Benalish Hero",
+      "match": "Banding",
+      "verdict": "n",
+      "why": "Identical keyword, reminder text added."
+    },
+    {
+      "card": "Black Lotus",
+      "match": "Adds 3 mana",
+      "verdict": "f",
+      "why": "Oracle adds {T} to the activation cost. The printed card required no tap, so under Oracle the ability cannot be activated while the artifact is tapped."
+    },
+    {
+      "card": "Brainstorm",
+      "match": "Draw three cards. Then",
+      "verdict": "n",
+      "why": "Punctuation and word order only."
+    },
+    {
+      "card": "Camouflage",
+      "match": "rearrange your attacking",
+      "verdict": "f",
+      "why": "Entirely different mechanic. Printed rearranges attackers face down; Oracle has each defender divide creatures into piles assigned to attackers at random."
+    },
+    {
+      "card": "Chaos Orb",
+      "match": "Flip Chaos Orb",
+      "verdict": "f",
+      "why": "Oracle adds {T} to the cost and excludes tokens, where the printed card destroyed any cards in play that it touched."
+    },
+    {
+      "card": "Demonic Tutor",
+      "match": "You may search your library",
+      "verdict": "n",
+      "why": "Printed \"you may search\" versus Oracle \"search\" is not a difference today: current rules already let a searching player fail to find."
+    },
+    {
+      "card": "False Orders",
+      "match": "You decide whether and how",
+      "verdict": "f",
+      "why": "Different mechanic. Printed dictates a defender's blocks; Oracle removes a creature from combat and may have it block, unblocking what it was blocking."
+    },
+    {
+      "card": "Fireball",
+      "match": "does X damage total",
+      "verdict": "n",
+      "why": "Alpha wording already reads \"any number of targets\". The extra-mana clause and the cost increase behave the same."
+    },
+    {
+      "card": "Fireball",
+      "match": "target creatures and/or players",
+      "verdict": "f",
+      "why": "\"Target creatures and/or players\" became \"any target\", which now includes planeswalkers and battles."
+    },
+    {
+      "card": "Fireball",
+      "match": "divided evenly (round down) among any number of target creatures",
+      "verdict": "f",
+      "why": "\"Target creatures and/or players\" became \"any target\", which now includes planeswalkers and battles."
+    },
+    {
+      "card": "Ice Storm",
+      "match": "Destroys any one land",
+      "verdict": "f",
+      "why": "Untargeted became targeted. It can now be stopped by hexproof or shroud and fizzles if the land becomes an illegal target."
+    },
+    {
+      "card": "Lightning Bolt",
+      "match": "target creature or player",
+      "verdict": "f",
+      "why": "\"Target creature or player\" became \"any target\", adding planeswalkers and battles."
+    },
+    {
+      "card": "Lightning Bolt",
+      "match": "does 3 damage to one target",
+      "verdict": "f",
+      "why": "\"One target\" became \"any target\", adding planeswalkers and battles. Similarity is 0.600, the high end of the set, yet the function changed."
+    },
+    {
+      "card": "Living Wall",
+      "match": "Counts as a wall",
+      "verdict": "n",
+      "why": "The Wall creature type no longer carries an inherent restriction; the Defender keyword preserves exactly the same behaviour."
+    },
+    {
+      "card": "Mana Vault",
+      "match": "At the end of your upkeep",
+      "verdict": "f",
+      "why": "Damage moved from the upkeep to the draw step, and untapping became a triggered ability rather than an activated one usable during upkeep."
+    },
+    {
+      "card": "Mana Vault",
+      "match": "Tap to add 3 colorless mana",
+      "verdict": "f",
+      "why": "Damage moved from the upkeep to the draw step, and untapping became a triggered ability rather than paying 4 at will."
+    },
+    {
+      "card": "Mana Vault",
+      "match": "does not untap during your untap phase. If it remains tapped",
+      "verdict": "f",
+      "why": "Damage moved from the upkeep to the draw step, and untapping became a triggered ability."
+    },
+    {
+      "card": "Mana Vault",
+      "match": "Mana Vault doesn't untap during your untap step",
+      "verdict": "n",
+      "why": "Self-reference replaced by \"this artifact\". Nothing else differs."
+    },
+    {
+      "card": "Mishra's Factory",
+      "match": "Tap to add 1 colorless mana to your mana pool or give",
+      "verdict": "f",
+      "why": "One either-or ability became two separate abilities, and pumping an Assembly Worker now requires a target."
+    },
+    {
+      "card": "Mishra's Factory",
+      "match": "cannot be tapped for mana the turn it comes into play",
+      "verdict": "f",
+      "why": "The printed restriction on tapping for mana the turn it enters does not exist in the Oracle text."
+    },
+    {
+      "card": "Mogg Fanatic",
+      "match": "target creature or player",
+      "verdict": "f",
+      "why": "\"Target creature or player\" became \"any target\", adding planeswalkers and battles."
+    },
+    {
+      "card": "Mystical Tutor",
+      "match": "instant, interrupt, mana source, or sorcery",
+      "verdict": "n",
+      "why": "Interrupt and mana source were folded into instant years ago, so the set of findable cards is unchanged."
+    },
+    {
+      "card": "Paralyze",
+      "match": "is not untapped as normal",
+      "verdict": "f",
+      "why": "Payment moved from the untap phase to a triggered ability at the beginning of the controller's upkeep, and the Aura framework was added."
+    },
+    {
+      "card": "Paralyze",
+      "match": "When Paralyze comes into play",
+      "verdict": "f",
+      "why": "Paying \"during his or her upkeep\" at will became a triggered ability at the beginning of upkeep."
+    },
+    {
+      "card": "Paralyze",
+      "match": "Target creature does not untap",
+      "verdict": "f",
+      "why": "Paying at will during upkeep became a triggered ability, and \"target creature\" became \"enchanted creature\"."
+    },
+    {
+      "card": "Shivan Dragon",
+      "match": "Flying, {R} +1/+0",
+      "verdict": "n",
+      "why": "The {R} was already an activation cost; only the punctuation and self-reference changed."
+    },
+    {
+      "card": "Shivan Dragon",
+      "match": "Flying {R} +1/+0 until end of turn",
+      "verdict": "n",
+      "why": "Templating only."
+    },
+    {
+      "card": "Sol Ring",
+      "match": "Add 2 colorless mana",
+      "verdict": "n",
+      "why": "The printed card already required tapping; the interrupt clause refers to a timing system that no longer exists."
+    },
+    {
+      "card": "Time Vault",
+      "match": "Tap to gain an additional turn",
+      "verdict": "f",
+      "why": "Untapping changed from paying a skipped turn at will to an optional replacement when your turn would begin, which is why the notorious untap loops behave differently."
+    },
+    {
+      "card": "Windfall",
+      "match": "discards his or her hand",
+      "verdict": "n",
+      "why": "Pronoun and word order only."
+    }
+  ]
+}
