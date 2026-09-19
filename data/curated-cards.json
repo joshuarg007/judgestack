@@ -1,0 +1,38 @@
+{
+  "note": "Selected for the 30-question evaluation. Legality picks were chosen programmatically by scripts/dev/pick-cards.ts as cards that are banned in one format, restricted in another, and legal in a third. Printed-vs-Oracle picks come from measured divergence between MTGJSON originalText and current Scryfall Oracle text.",
+  "cards": [
+    { "name": "Word of Command", "category": "printedVsOracle", "why": "Demo 1. Printed text omits the control effect entirely." },
+    { "name": "Camouflage", "category": "printedVsOracle", "why": "Largest measured divergence in Alpha." },
+    { "name": "False Orders", "category": "printedVsOracle", "why": "Combat rewrite." },
+    { "name": "Paralyze", "category": "printedVsOracle", "why": "Aura templating rewrite." },
+    { "name": "Mana Vault", "category": "printedVsOracle", "why": "Templating rewrite; also has a modern printing for contrast." },
+    { "name": "Benalish Hero", "category": "printedVsOracle", "why": "Similarity 0.025 but functionally IDENTICAL. Kills the similarity heuristic." },
+    { "name": "Lightning Bolt", "category": "printedVsOracle", "why": "Similarity 0.600 but functionally DIFFERENT. 'one target' vs 'any target'." },
+    { "name": "Time Vault", "category": "printedVsOracle", "why": "Famous errata history." },
+    { "name": "Ice Storm", "category": "printedVsOracle", "why": "Early templating." },
+    { "name": "Living Wall", "category": "printedVsOracle", "why": "Early templating." },
+
+    { "name": "Mogg Fanatic", "category": "rulesVersion", "why": "Demo 2. Named in the 2009 combat damage announcement." },
+    { "name": "Mishra's Factory", "category": "rulesVersion", "why": "Combat damage on the stack era interactions." },
+    { "name": "Fireball", "category": "rulesVersion", "why": "Mana burn era." },
+    { "name": "Black Lotus", "category": "rulesVersion", "why": "Mana burn era; also a legality case." },
+    { "name": "Shivan Dragon", "category": "rulesVersion", "why": "Damage prevention templating era." },
+
+    { "name": "Sol Ring", "category": "legality", "why": "Banned Legacy, restricted Vintage, legal Commander." },
+    { "name": "Brainstorm", "category": "legality", "why": "Banned Historic/Premodern, restricted Vintage, legal Legacy/Pauper." },
+    { "name": "The Fantasticar", "category": "legality", "why": "Demo 3. Banned Legacy, restricted Vintage/Duel, legal Commander." },
+    { "name": "Dig Through Time", "category": "legality", "why": "Banned Modern/Legacy, restricted Vintage, legal Pioneer." },
+    { "name": "Treasure Cruise", "category": "legality", "why": "Banned Modern/Legacy/Pauper, restricted Vintage, legal Pioneer." },
+    { "name": "Vexing Bauble", "category": "legality", "why": "Banned Legacy, restricted Vintage, legal Modern." },
+    { "name": "Nadu, Winged Wisdom", "category": "legality", "why": "Banned Modern/Legacy/Commander, legal Vintage." },
+    { "name": "Windfall", "category": "legality", "why": "Banned Legacy/Premodern, restricted Vintage, legal Commander." },
+    { "name": "Golgari Grave-Troll", "category": "legality", "why": "Banned Modern, restricted Vintage, legal Legacy." },
+    { "name": "Demonic Tutor", "category": "legality", "why": "Banned Legacy, restricted Timeless AND Vintage, legal Commander." },
+    { "name": "Mystical Tutor", "category": "legality", "why": "Banned Legacy/Premodern, restricted Vintage, legal Commander." },
+    { "name": "Karn, the Great Creator", "category": "legality", "why": "Banned Pioneer, restricted Vintage, legal Modern." },
+
+    { "name": "Urborg, Tomb of Yawgmoth", "category": "support", "why": "One of the 521 printings exposing printed_text on Scryfall." },
+    { "name": "Chaos Orb", "category": "support", "why": "Physical dexterity card; useful uncertainty case." },
+    { "name": "Ancestral Recall", "category": "support", "why": "Restricted Vintage, banned elsewhere." }
+  ]
+}

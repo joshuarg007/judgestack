@@ -1,0 +1,44 @@
+{
+  "name": "judgestack",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An agent that answers Magic: The Gathering rules questions by reconstructing the authority chain behind the answer.",
+  "scripts": {
+    "dev": "next dev",
+    "schema:deploy": "sanity schema deploy",
+    "budget": "tsx scripts/check-budget.ts",
+    "ingest:rules": "tsx scripts/ingest-rules.ts",
+    "ingest:cards": "tsx scripts/ingest-cards.ts",
+    "ingest:printings": "tsx scripts/ingest-printings.ts",
+    "ingest:bans": "tsx scripts/ingest-ban-events.ts",
+    "detect:differences": "tsx scripts/detect-differences.ts",
+    "slice": "tsx eval/run-slice.ts",
+    "ingest:legality": "tsx scripts/ingest-legality-claims.ts",
+    "build:eval": "tsx scripts/build-eval.ts",
+    "review": "tsx scripts/review-decisions.ts",
+    "corpus": "tsx eval/corpus.ts",
+    "eval": "tsx eval/run-eval.ts",
+    "build": "next build",
+    "start": "next start",
+    "studio": "sanity dev"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^2",
+    "@ai-sdk/mcp": "^1",
+    "@ai-sdk/openai-compatible": "^1.0.54",
+    "@sanity/client": "^7",
+    "ai": "^5",
+    "next": "^15.5.25",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sanity": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "prompt": "Explain how Word of Command works under the current rules, then compare its complete Oracle text with the selected printed wording. Do not silently truncate either text.",
+  "criteria": [
+    { "id": "retrieves-card-and-printing", "label": "Retrieves the intended card and the intended printing", "automated": true },
+    { "id": "complete-oracle-text", "label": "Returns the complete Oracle text, not an excerpt", "automated": true },
+    { "id": "identifies-governing-source", "label": "Identifies which source governs each claim", "automated": false },
+    { "id": "quotation-vs-explanation", "label": "Distinguishes quotation from explanation", "automated": false },
+    { "id": "exposes-failures", "label": "Exposes any truncation or retrieval failure", "automated": false },
+    { "id": "traceable-ids", "label": "Provides traceable source and document ids", "automated": true },
+    { "id": "consistent-across-endpoints", "label": "Materially consistent conclusions across both endpoints", "automated": false }
+  ],
+  "expectedOracleTail": "If the chosen card is cast as a spell, you control the player while that spell is resolving."
+}

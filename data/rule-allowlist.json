@@ -1,0 +1,13 @@
+{
+  "note": "Only these rule paragraphs become dataset documents. The complete rules live in the Knowledge Base as a file source, not republished here.",
+  "rules": [
+    { "number": "101.1", "why": "Card text overrides a general rule in its specific situation" },
+    { "number": "108.1", "why": "Use the Oracle card reference when determining a card's wording" },
+    { "number": "700.2", "why": "Modal spells; notes that older modal cards received Oracle errata" },
+    { "number": "510.1", "why": "Combat damage step" },
+    { "number": "510.2", "why": "Combat damage is dealt as assigned" },
+    { "number": "608.2", "why": "Resolving a spell or ability" },
+    { "number": "100.2", "why": "Deck construction and format legality" },
+    { "number": "100.4", "why": "Sideboards" }
+  ]
+}

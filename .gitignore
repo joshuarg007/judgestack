@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.local
+dist/
+.sanity/
+# Wizards' rules text and bulk card data are not ours to redistribute.
+data/raw/
+*.jsonl
+*.jsonl.gz
+.next/
+next-env.d.ts

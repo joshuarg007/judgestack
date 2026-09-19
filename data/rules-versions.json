@@ -1,0 +1,6 @@
+{
+  "note": "Wizards' rules page links only the newest file, which may be effective in the FUTURE (on 2026-09-18 it served a file effective 2026-09-25). A project about temporal authority cannot treat 'newest' as 'current'. List the prior versions explicitly so queries can filter on effectiveFrom <= today.",
+  "extraUrls": [
+    "https://media.wizards.com/2026/downloads/MagicCompRules%2020260819.txt"
+  ]
+}

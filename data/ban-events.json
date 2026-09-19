@@ -1,0 +1,27 @@
+{
+  "note": "Hand-curated. Scryfall gives current legality only, never the dated sequence.",
+  "events": [
+    {
+      "card": "The Fantasticar",
+      "format": "legacy",
+      "status": "banned",
+      "effectiveFrom": "2026-08-10",
+      "announcementUrl": "https://magic.wizards.com/en/news"
+    },
+    {
+      "card": "The Fantasticar",
+      "format": "vintage",
+      "status": "restricted",
+      "effectiveFrom": "2026-08-10",
+      "announcementUrl": "https://magic.wizards.com/en/news"
+    },
+    {
+      "card": "The Fantasticar",
+      "format": "commander",
+      "status": "legal",
+      "effectiveFrom": "2026-06-26",
+      "announcementUrl": "https://magic.wizards.com/en/news"
+    }
+  ],
+  "TODO": "Replace announcementUrl with the exact B&R announcement permalinks before the evaluation. Verify each effectiveFrom against the announcement, not against Scryfall."
+}

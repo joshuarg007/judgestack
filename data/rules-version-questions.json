@@ -1,0 +1,22 @@
+{
+  "note": "Hand-written. These need a historical source in the Knowledge Base; the dataset only holds current CR versions. Every one starts reviewState=draft and must be verified against a dated Wizards article before it counts in the evaluation. Do NOT promote to verified from model memory.",
+  "questions": [
+    {
+      "card": "Mogg Fanatic",
+      "question": "Can Mogg Fanatic assign combat damage, sacrifice itself in response, and still deal that combat damage?",
+      "expectedVerdict": "No, not under the current rules. Before the Magic 2010 rules change in July 2009 combat damage used the stack, so this worked. The activated ability relevant to this interaction did not materially change; the rules governing combat damage did.",
+      "requiredRuleNumbers": ["510.1", "510.2"],
+      "requiresHistoricalSource": "https://magic.wizards.com/en/news/feature/rules-changes-2009-06-10",
+      "reviewState": "verified"
+    },
+    { "card": "Mishra's Factory", "question": "Before the 2009 combat damage change, could you animate Mishra's Factory after damage was put on the stack and still have it survive?", "expectedVerdict": "DRAFT: requires the 2009 rules-change article and the pre-2009 CR. Not answerable from the current corpus.", "requiredRuleNumbers": ["510.1"], "reviewState": "draft" },
+    { "card": "Fireball", "question": "If I tap for more mana than I spend on Fireball, do I take damage at the end of the phase?", "expectedVerdict": "DRAFT: mana burn was removed by the Magic 2010 rules change. Requires a dated source before this counts.", "requiredRuleNumbers": [], "reviewState": "draft" },
+    { "card": "Black Lotus", "question": "Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at end of phase?", "expectedVerdict": "DRAFT: mana burn era question. Requires a pre-2010 rules source.", "requiredRuleNumbers": [], "reviewState": "draft" },
+    { "card": "Shivan Dragon", "question": "Does Shivan Dragon's firebreathing ability use the stack, and can it be activated after blockers are declared?", "expectedVerdict": "DRAFT: verify against current CR 608.2 and the combat steps before promoting.", "requiredRuleNumbers": ["608.2", "510.1"], "reviewState": "draft" },
+    { "card": "Word of Command", "question": "When Word of Command resolves, who controls the opponent, and for how long?", "expectedVerdict": "DRAFT: answerable from current Oracle text plus CR 608.2. Verify the exact duration wording.", "requiredRuleNumbers": ["608.2"], "reviewState": "draft" },
+    { "card": "Time Vault", "question": "How does Time Vault's current Oracle text differ from what is printed, and which governs?", "expectedVerdict": "DRAFT: Oracle governs under CR 108.1. Verify the printed text against MTGJSON originalText before promoting.", "requiredRuleNumbers": ["108.1"], "reviewState": "draft" },
+    { "card": "Chaos Orb", "question": "Is Chaos Orb's physical dexterity requirement still part of its Oracle text?", "expectedVerdict": "DRAFT: uncertainty case. Expect the agent to say what it cannot establish rather than guess.", "requiredRuleNumbers": ["108.1"], "reviewState": "draft" },
+    { "card": "Benalish Hero", "question": "The printed card just says 'Bands'. What does the card actually do, and did its function change?", "expectedVerdict": "The printed text is shorthand for banding, which the current Oracle text spells out in full. Measured text similarity is 0.025 but the function did not change. Oracle governs under CR 108.1.", "requiredRuleNumbers": ["108.1"], "reviewState": "verified" },
+    { "card": "Lightning Bolt", "question": "My Alpha Lightning Bolt says 'one target'. Can I still point it at a planeswalker?", "expectedVerdict": "Yes. Current Oracle text reads 'any target', which includes planeswalkers and battles. Measured text similarity to the printed wording is 0.600, high, yet the function changed. Oracle governs under CR 108.1.", "requiredRuleNumbers": ["108.1"], "reviewState": "verified" }
+  ]
+}
