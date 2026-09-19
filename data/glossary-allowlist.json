@@ -1,0 +1,35 @@
+{
+  "note": "Only glossary terms the curated cases actually need. The complete glossary lives in the Knowledge Base as part of the rules file source, not republished here. Names must match the glossary exactly; 'Banding' is listed as 'Banding, “Bands with Other”' and 'Upkeep' as 'Upkeep Step'.",
+  "terms": [
+    "Activated Ability",
+    "Any Target",
+    "Banding, “Bands with Other”",
+    "Battle",
+    "Battlefield",
+    "Combat Damage Step",
+    "Declare Blockers Step",
+    "Extra Turn",
+    "Mana Ability",
+    "Mana Pool",
+    "Oracle",
+    "Permanent",
+    "Planeswalker",
+    "Priority",
+    "Resolve",
+    "Sacrifice",
+    "Stack",
+    "Token",
+    "Untap Step",
+    "Upkeep Step"
+  ],
+  "notInGlossary": {
+    "note": "Deliberately absent. These are not Comprehensive Rules glossary terms, so there is nothing to cite. Legality vocabulary comes from format announcements, and 'errata' is described in rule 700.2 rather than defined in the glossary.",
+    "terms": [
+      "Banned",
+      "Restricted",
+      "Legal",
+      "Format",
+      "Errata"
+    ]
+  }
+}

@@ -21,7 +21,8 @@
     "eval": "tsx eval/run-eval.ts",
     "build": "next build",
     "start": "next start",
-    "studio": "sanity dev"
+    "studio": "sanity dev",
+    "ingest:glossary": "tsx scripts/ingest-glossary.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",
