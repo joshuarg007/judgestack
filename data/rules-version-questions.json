@@ -1,22 +1,96 @@
 {
-  "note": "Hand-written. These need a historical source in the Knowledge Base; the dataset only holds current CR versions. Every one starts reviewState=draft and must be verified against a dated Wizards article before it counts in the evaluation. Do NOT promote to verified from model memory.",
+  "note": "Hand-written. Every entry was verified against a primary source on 2026-09-18 before being marked verified. Do NOT promote an entry from model memory.",
+  "sources": {
+    "m10": "https://magic.wizards.com/en/news/feature/rules-changes-2009-06-10",
+    "cr": "Comprehensive Rules, version effective 2026-08-07",
+    "scryfall": "https://api.scryfall.com current Oracle text",
+    "mtgjson": "https://mtgjson.com originalText per printing"
+  },
   "questions": [
     {
       "card": "Mogg Fanatic",
       "question": "Can Mogg Fanatic assign combat damage, sacrifice itself in response, and still deal that combat damage?",
       "expectedVerdict": "No, not under the current rules. Before the Magic 2010 rules change in July 2009 combat damage used the stack, so this worked. The activated ability relevant to this interaction did not materially change; the rules governing combat damage did.",
       "requiredRuleNumbers": ["510.1", "510.2"],
-      "requiresHistoricalSource": "https://magic.wizards.com/en/news/feature/rules-changes-2009-06-10",
+      "verifiedBy": "m10",
+      "quote": "5) Combat Damage No Longer Uses the Stack ... it actively makes cards such as Mogg Fanatic worse.",
       "reviewState": "verified"
     },
-    { "card": "Mishra's Factory", "question": "Before the 2009 combat damage change, could you animate Mishra's Factory after damage was put on the stack and still have it survive?", "expectedVerdict": "DRAFT: requires the 2009 rules-change article and the pre-2009 CR. Not answerable from the current corpus.", "requiredRuleNumbers": ["510.1"], "reviewState": "draft" },
-    { "card": "Fireball", "question": "If I tap for more mana than I spend on Fireball, do I take damage at the end of the phase?", "expectedVerdict": "DRAFT: mana burn was removed by the Magic 2010 rules change. Requires a dated source before this counts.", "requiredRuleNumbers": [], "reviewState": "draft" },
-    { "card": "Black Lotus", "question": "Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at end of phase?", "expectedVerdict": "DRAFT: mana burn era question. Requires a pre-2010 rules source.", "requiredRuleNumbers": [], "reviewState": "draft" },
-    { "card": "Shivan Dragon", "question": "Does Shivan Dragon's firebreathing ability use the stack, and can it be activated after blockers are declared?", "expectedVerdict": "DRAFT: verify against current CR 608.2 and the combat steps before promoting.", "requiredRuleNumbers": ["608.2", "510.1"], "reviewState": "draft" },
-    { "card": "Word of Command", "question": "When Word of Command resolves, who controls the opponent, and for how long?", "expectedVerdict": "DRAFT: answerable from current Oracle text plus CR 608.2. Verify the exact duration wording.", "requiredRuleNumbers": ["608.2"], "reviewState": "draft" },
-    { "card": "Time Vault", "question": "How does Time Vault's current Oracle text differ from what is printed, and which governs?", "expectedVerdict": "DRAFT: Oracle governs under CR 108.1. Verify the printed text against MTGJSON originalText before promoting.", "requiredRuleNumbers": ["108.1"], "reviewState": "draft" },
-    { "card": "Chaos Orb", "question": "Is Chaos Orb's physical dexterity requirement still part of its Oracle text?", "expectedVerdict": "DRAFT: uncertainty case. Expect the agent to say what it cannot establish rather than guess.", "requiredRuleNumbers": ["108.1"], "reviewState": "draft" },
-    { "card": "Benalish Hero", "question": "The printed card just says 'Bands'. What does the card actually do, and did its function change?", "expectedVerdict": "The printed text is shorthand for banding, which the current Oracle text spells out in full. Measured text similarity is 0.025 but the function did not change. Oracle governs under CR 108.1.", "requiredRuleNumbers": ["108.1"], "reviewState": "verified" },
-    { "card": "Lightning Bolt", "question": "My Alpha Lightning Bolt says 'one target'. Can I still point it at a planeswalker?", "expectedVerdict": "Yes. Current Oracle text reads 'any target', which includes planeswalkers and battles. Measured text similarity to the printed wording is 0.600, high, yet the function changed. Oracle governs under CR 108.1.", "requiredRuleNumbers": ["108.1"], "reviewState": "verified" }
+    {
+      "card": "Nantuko Husk",
+      "question": "Could you once block with a creature, let combat damage go on the stack, then sacrifice that creature to Nantuko Husk and still deal its damage?",
+      "expectedVerdict": "Yes, before the Magic 2010 rules change in July 2009. Not since. Wizards named this exact interaction as one of the confusing cases the change removed. The last chance to sacrifice is now the declare blockers step.",
+      "requiredRuleNumbers": ["510.1"],
+      "verifiedBy": "m10",
+      "quote": "How did that creature kill mine but make your Nantuko Husk big enough to survive? ... The declare blockers step is also the time you need to determine whether you want to Unsummon a creature, sacrifice Mogg Fanatic, sacrifice a creature to pump up Nantuko Husk, or the like.",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Fireball",
+      "question": "If I tap for more mana than I spend on Fireball, do I take damage at the end of the phase?",
+      "expectedVerdict": "No. Mana burn was eliminated as a game concept by the Magic 2010 rules change in July 2009. Unspent mana simply empties from your mana pool.",
+      "requiredRuleNumbers": [],
+      "verifiedBy": "m10",
+      "quote": "3B) Mana Burn Eliminated ... The Fix: Mana burn is eliminated as a game concept.",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Black Lotus",
+      "question": "Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at the end of the phase?",
+      "expectedVerdict": "You took one damage per unspent mana, which was called mana burn. That rule existed in 2005 and was eliminated by the Magic 2010 rules change in July 2009, so it does not apply today.",
+      "requiredRuleNumbers": [],
+      "verifiedBy": "m10",
+      "quote": "3B) Mana Burn Eliminated ... The Fix: Mana burn is eliminated as a game concept.",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Shivan Dragon",
+      "question": "Could you once put combat damage on the stack and then pump Shivan Dragon to change how much damage it dealt?",
+      "expectedVerdict": "No, and this is the direction of the change people misremember. Before July 2009 damage was locked in when it went on the stack, so pumping afterwards did not increase it. Since the Magic 2010 change combat damage no longer uses the stack at all, so the last chance to pump is the declare blockers step.",
+      "requiredRuleNumbers": ["510.1", "510.2"],
+      "verifiedBy": "m10",
+      "quote": "5) Combat Damage No Longer Uses the Stack",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Word of Command",
+      "question": "When Word of Command resolves, who controls the opponent, and for how long?",
+      "expectedVerdict": "You control that player until Word of Command finishes resolving, and if the chosen card is cast as a spell you control the player while that spell is resolving too. The complete current Oracle text must be quoted, including the mana-ability restrictions, which appear nowhere on the Alpha printing.",
+      "requiredRuleNumbers": ["108.1"],
+      "verifiedBy": "scryfall",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Time Vault",
+      "question": "How does Time Vault's current Oracle text differ from what is printed on the Alpha card, and which governs?",
+      "expectedVerdict": "The Alpha card reads that you untap it by skipping a turn. Current Oracle text instead says that if you would begin your turn while it is tapped you may skip that turn and untap it, and it adds that the artifact enters tapped. Oracle governs under CR 108.1.",
+      "requiredRuleNumbers": ["108.1"],
+      "verifiedBy": "mtgjson",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Chaos Orb",
+      "question": "Is Chaos Orb's physical flip requirement still part of its Oracle text?",
+      "expectedVerdict": "Yes. Current Oracle text still requires flipping the card onto the battlefield from a height of at least one foot, and it must turn over completely at least once. The wording was retemplated but the physical requirement remains.",
+      "requiredRuleNumbers": ["108.1"],
+      "verifiedBy": "scryfall",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Benalish Hero",
+      "question": "The printed card just says 'Bands'. What does the card actually do, and did its function change?",
+      "expectedVerdict": "The printed text is shorthand for banding, which the current Oracle text spells out in full. Measured text similarity is 0.025 but the function did not change. Oracle governs under CR 108.1.",
+      "requiredRuleNumbers": ["108.1"],
+      "verifiedBy": "mtgjson",
+      "reviewState": "verified"
+    },
+    {
+      "card": "Lightning Bolt",
+      "question": "My Alpha Lightning Bolt says 'one target'. Can I still point it at a planeswalker?",
+      "expectedVerdict": "Yes. Current Oracle text reads 'any target', which includes planeswalkers and battles. Measured text similarity to the printed wording is 0.600, high, yet the function changed. Oracle governs under CR 108.1.",
+      "requiredRuleNumbers": ["108.1"],
+      "verifiedBy": "mtgjson",
+      "reviewState": "verified"
+    }
   ]
 }

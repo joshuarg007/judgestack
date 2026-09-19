@@ -7,11 +7,16 @@
  * and a historical verdict needs a dated Wizards article in the Knowledge Base.
  *
  * Holdout selection is deterministic: sha256 of the question text, lowest 10 by
- * hex value. The hash list is committed so the split cannot be quietly changed
- * after prompt tuning.
+ * hex value, committed to eval/holdout-hashes.txt.
+ *
+ * Membership is pinned by CASE KEY, not by hash. Editing a question's wording
+ * changes its hash, and recomputing the split from scratch could move a question
+ * that was already used for tuning into the holdout set, contaminating it. So once
+ * eval/holdout-keys.txt exists it is authoritative, and only genuinely new cases
+ * can be assigned. New cases default to tuning, never to holdout.
  */
 import { createHash } from 'node:crypto'
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { client, commit, id } from './lib/client'
 import handwritten from '../data/rules-version-questions.json' with { type: 'json' }
 
@@ -107,9 +112,20 @@ for (const q of handwritten.questions) {
   })
 }
 
-// --- deterministic holdout ----------------------------------------------------
+// --- deterministic holdout, pinned by key -------------------------------------
 const hashed = cases.map((c) => ({ ...c, hash: createHash('sha256').update(c.question).digest('hex') }))
-const holdouts = new Set([...hashed].sort((a, b) => a.hash.localeCompare(b.hash)).slice(0, 10).map((c) => c.hash))
+
+const KEYS_FILE = 'eval/holdout-keys.txt'
+let holdoutKeys: Set<string>
+if (existsSync(KEYS_FILE)) {
+  holdoutKeys = new Set(readFileSync(KEYS_FILE, 'utf8').split('\n').filter((l) => l && !l.startsWith('#')))
+  const unknown = hashed.filter((c) => !holdoutKeys.has(c.key)).length
+  console.log(`holdout membership loaded from ${KEYS_FILE}; ${holdoutKeys.size} pinned, ${unknown} cases in tuning`)
+} else {
+  holdoutKeys = new Set([...hashed].sort((a, b) => a.hash.localeCompare(b.hash)).slice(0, 10).map((c) => c.key))
+  console.log(`no ${KEYS_FILE}; assigning a fresh holdout split of ${holdoutKeys.size}`)
+}
+const holdouts = new Set(hashed.filter((c) => holdoutKeys.has(c.key)).map((c) => c.hash))
 
 const docs = hashed.map((c) => ({
   _id: id('case', c.key),
@@ -128,11 +144,20 @@ console.log(`${hashed.length} cases: ${byType('printedVsOracle')} printedVsOracl
 console.log(`verified ${hashed.filter((c) => c.reviewState === 'verified').length}, draft ${hashed.filter((c) => c.reviewState === 'draft').length}`)
 console.log(`holdout ${docs.filter((d) => d.holdout).length}`)
 
-writeFileSync('eval/questions.json', JSON.stringify(hashed.map(({ hash, ...c }) => ({ hash, ...c })), null, 2))
+writeFileSync('eval/questions.json', JSON.stringify(hashed.map((c) => ({ ...c, holdout: holdouts.has(c.hash) })), null, 2))
 writeFileSync('eval/holdout-hashes.txt',
-  `# Holdout question hashes, locked ${new Date().toISOString()}\n` +
-  `# Committed BEFORE any prompt tuning. Do not regenerate after tuning.\n` +
+  `# Holdout question hashes as of ${new Date().toISOString()}\n` +
+  `# Derived from eval/holdout-keys.txt, which is the authoritative membership list.\n` +
+  `# Hashes change when a question is reworded; membership does not.\n` +
   [...holdouts].sort().join('\n') + '\n')
+
+if (!existsSync(KEYS_FILE)) {
+  writeFileSync(KEYS_FILE,
+    `# Holdout membership, pinned ${new Date().toISOString()}, BEFORE any prompt tuning.\n` +
+    `# Never edit or regenerate this file. Rewording a question keeps its membership.\n` +
+    [...holdoutKeys].sort().join('\n') + '\n')
+  console.log(`wrote ${KEYS_FILE}`)
+}
 
 await commit(docs)
 console.log('wrote eval/questions.json and eval/holdout-hashes.txt')

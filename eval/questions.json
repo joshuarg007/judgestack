@@ -1,6 +1,5 @@
 [
   {
-    "hash": "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a",
     "key": "pvo-LEA-Benalish Hero",
     "question": "My Limited Edition Alpha copy of Benalish Hero reads \"Bands\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -12,10 +11,11 @@
       "card.4c81cfb7-8765-4e28-ae33-4287fa9a86cc"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.025; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.025; similarity is not evidence of functional change",
+    "hash": "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a",
+    "holdout": true
   },
   {
-    "hash": "72b450389610227854872bd35593656da1b051cb962bc8ccadb9f73b4a3058a6",
     "key": "pvo-LEB-Lightning Bolt",
     "question": "My Limited Edition Beta copy of Lightning Bolt reads \"Lightning Bolt does 3 damage to one target.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -27,10 +27,11 @@
       "card.4457ed35-7c10-48c8-9776-456485fdf070"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.6; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.6; similarity is not evidence of functional change",
+    "hash": "72b450389610227854872bd35593656da1b051cb962bc8ccadb9f73b4a3058a6",
+    "holdout": false
   },
   {
-    "hash": "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83",
     "key": "pvo-LEB-Sol Ring",
     "question": "My Limited Edition Beta copy of Sol Ring reads \"Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -42,10 +43,11 @@
       "card.6ad8011d-3471-4369-9d68-b264cc027487"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.056; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.056; similarity is not evidence of functional change",
+    "hash": "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83",
+    "holdout": true
   },
   {
-    "hash": "ec7b90ea5432ffb2554a8e4a8e732f2d5ca48d8b2ea68f68ae935d94ef63ea4a",
     "key": "pvo-LEA-False Orders",
     "question": "My Limited Edition Alpha copy of False Orders reads \"You decide whether and how one defending creature blocks, though you can't make a choice the defender couldn't legally make. Play after defender has chosen defense but before damage is dealt.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -57,10 +59,11 @@
       "card.38c5c952-8153-4d98-89b5-a75260383345"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.083; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.083; similarity is not evidence of functional change",
+    "hash": "ec7b90ea5432ffb2554a8e4a8e732f2d5ca48d8b2ea68f68ae935d94ef63ea4a",
+    "holdout": false
   },
   {
-    "hash": "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447",
     "key": "pvo-LEB-Paralyze",
     "question": "My Limited Edition Beta copy of Paralyze reads \"Target creature is not untapped as normal during untap phase unless 4 mana are spent. Tap target creature when Paralyze is cast.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -72,10 +75,11 @@
       "card.e9b4e857-39e5-4a06-89ad-3dd94b3f252a"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.146; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.146; similarity is not evidence of functional change",
+    "hash": "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447",
+    "holdout": true
   },
   {
-    "hash": "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20",
     "key": "pvo-2ED-Ice Storm",
     "question": "My Unlimited Edition copy of Ice Storm reads \"Destroys any one land.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -87,10 +91,11 @@
       "card.a0b97e33-2d0c-4800-a9f5-9cd9be651ea8"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.167; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.167; similarity is not evidence of functional change",
+    "hash": "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20",
+    "holdout": true
   },
   {
-    "hash": "c909fdaf99b648fa1acd1abd67f97dbb3859e26be0e4712e3a04c4dbb6a0c678",
     "key": "pvo-2ED-Word of Command",
     "question": "My Unlimited Edition copy of Word of Command reads \"You may look at opponent's hand and choose any card opponent can legally play using mana from his or her mana pool or lands. Opponent must play this card immediately; you make all the decisions it calls for. This spell may not be countered after you have looked at opponent's hand.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -102,10 +107,11 @@
       "card.e8ad3a77-b293-4d69-b080-27ca9f95d443"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.257; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.257; similarity is not evidence of functional change",
+    "hash": "c909fdaf99b648fa1acd1abd67f97dbb3859e26be0e4712e3a04c4dbb6a0c678",
+    "holdout": false
   },
   {
-    "hash": "bfe7200341658746074852ce4a10dfd6282ff8ce86e9beb6dbf89b5bc137ef0c",
     "key": "pvo-4ED-Mana Vault",
     "question": "My Fourth Edition copy of Mana Vault reads \"Mana Vault does not untap during your untap phase. If it remains tapped during your upkeep, Mana Vault deals 1 damage to you. {4}: Untap Mana Vault. Use this ability only during your upkeep. ocT: Add three colorless mana to your mana pool. Play these additions as interrupts.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -117,10 +123,11 @@
       "card.736892cb-a34b-4bb9-b56c-e26e3db207a2"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.319; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.319; similarity is not evidence of functional change",
+    "hash": "bfe7200341658746074852ce4a10dfd6282ff8ce86e9beb6dbf89b5bc137ef0c",
+    "holdout": false
   },
   {
-    "hash": "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5",
     "key": "pvo-LEA-Demonic Tutor",
     "question": "My Limited Edition Alpha copy of Demonic Tutor reads \"You may search your library for one card and take it into your hand. Reshuffle your library afterwards.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -132,10 +139,11 @@
       "card.82004860-e589-4e38-8d61-8c0210e4ea39"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.35; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.35; similarity is not evidence of functional change",
+    "hash": "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5",
+    "holdout": true
   },
   {
-    "hash": "a106b87621be21c9446761da21e55ebb4adaa49e91b954eaa7342a39be3bfc8f",
     "key": "pvo-TMP-Mogg Fanatic",
     "question": "My Tempest copy of Mogg Fanatic reads \"Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.\". What does the card actually do now?",
     "questionType": "printedVsOracle",
@@ -147,10 +155,11 @@
       "card.7efd5d62-6da2-428a-98e3-5b842f668656"
     ],
     "reviewState": "verified",
-    "notes": "measured similarity 0.5; similarity is not evidence of functional change"
+    "notes": "measured similarity 0.5; similarity is not evidence of functional change",
+    "hash": "a106b87621be21c9446761da21e55ebb4adaa49e91b954eaa7342a39be3bfc8f",
+    "holdout": false
   },
   {
-    "hash": "c60f67ec81f5065b07070fb292105a525c7baf3f74c759173918d9a22e77558a",
     "key": "leg-Windfall",
     "question": "Can I register Windfall today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -159,10 +168,11 @@
     "requiredCardIds": [
       "card.08becc07-28bc-4a2f-a6b0-28a2998d2f50"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "c60f67ec81f5065b07070fb292105a525c7baf3f74c759173918d9a22e77558a",
+    "holdout": false
   },
   {
-    "hash": "90559908d61c85bde798e85f39df175b1d9c45fbfe5b353f4436eeeaaaddda3d",
     "key": "leg-Brainstorm",
     "question": "Can I register Brainstorm today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -171,10 +181,11 @@
     "requiredCardIds": [
       "card.36cd2364-d113-47d1-b2c4-b088d9eb88dd"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "90559908d61c85bde798e85f39df175b1d9c45fbfe5b353f4436eeeaaaddda3d",
+    "holdout": false
   },
   {
-    "hash": "8162be6d3e52c759df1c47267d0e8c15fb7ccfce21945345dcbcfcead72669d5",
     "key": "leg-Vexing Bauble",
     "question": "Can I register Vexing Bauble today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -183,10 +194,11 @@
     "requiredCardIds": [
       "card.4514777d-0589-4631-978b-ff244167c176"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "8162be6d3e52c759df1c47267d0e8c15fb7ccfce21945345dcbcfcead72669d5",
+    "holdout": false
   },
   {
-    "hash": "a455d3eb7fc7a6616de0cb7645afe867392f889330bf2593594b3b01ba900050",
     "key": "leg-Black Lotus",
     "question": "Can I register Black Lotus today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -195,10 +207,11 @@
     "requiredCardIds": [
       "card.5089ec1a-f881-4d55-af14-5d996171203b"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "a455d3eb7fc7a6616de0cb7645afe867392f889330bf2593594b3b01ba900050",
+    "holdout": false
   },
   {
-    "hash": "fee1447b4c40c87f356da99d8576ea3964bb0574bc73ce8243934a9dbebeb148",
     "key": "leg-Ancestral Recall",
     "question": "Can I register Ancestral Recall today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -207,10 +220,11 @@
     "requiredCardIds": [
       "card.550c74d4-1fcb-406a-b02a-639a760a4380"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "fee1447b4c40c87f356da99d8576ea3964bb0574bc73ce8243934a9dbebeb148",
+    "holdout": false
   },
   {
-    "hash": "92d80506e08b214b80e894c807f9457bcd066aa27e07bc6656d44b2d56055ce1",
     "key": "leg-Treasure Cruise",
     "question": "Can I register Treasure Cruise today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -219,10 +233,11 @@
     "requiredCardIds": [
       "card.5b6bdf5a-2742-4851-92cd-a857a3852836"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "92d80506e08b214b80e894c807f9457bcd066aa27e07bc6656d44b2d56055ce1",
+    "holdout": false
   },
   {
-    "hash": "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9",
     "key": "leg-Golgari Grave-Troll",
     "question": "Can I register Golgari Grave-Troll today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -231,10 +246,11 @@
     "requiredCardIds": [
       "card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9",
+    "holdout": true
   },
   {
-    "hash": "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a",
     "key": "leg-Sol Ring",
     "question": "Can I register Sol Ring today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -243,10 +259,11 @@
     "requiredCardIds": [
       "card.6ad8011d-3471-4369-9d68-b264cc027487"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a",
+    "holdout": true
   },
   {
-    "hash": "e624e8470c2084ba82fd25018ff3aa9a51b4b84678b3019f24a0c119d34dd14b",
     "key": "leg-Mana Vault",
     "question": "Can I register Mana Vault today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -255,10 +272,11 @@
     "requiredCardIds": [
       "card.736892cb-a34b-4bb9-b56c-e26e3db207a2"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "e624e8470c2084ba82fd25018ff3aa9a51b4b84678b3019f24a0c119d34dd14b",
+    "holdout": false
   },
   {
-    "hash": "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71",
     "key": "leg-Demonic Tutor",
     "question": "Can I register Demonic Tutor today, and in which formats? If it is restricted anywhere, say where.",
     "questionType": "legality",
@@ -267,10 +285,11 @@
     "requiredCardIds": [
       "card.82004860-e589-4e38-8d61-8c0210e4ea39"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71",
+    "holdout": true
   },
   {
-    "hash": "8af5d8ae6cd1524ec971e0090e4d71ffe0eb744fecb226128c18ee6f570b6664",
     "key": "rv-Mogg Fanatic",
     "question": "Can Mogg Fanatic assign combat damage, sacrifice itself in response, and still deal that combat damage?",
     "questionType": "rulesVersion",
@@ -283,105 +302,110 @@
       "card.7efd5d62-6da2-428a-98e3-5b842f668656"
     ],
     "reviewState": "verified",
-    "notes": "https://magic.wizards.com/en/news/feature/rules-changes-2009-06-10"
+    "hash": "8af5d8ae6cd1524ec971e0090e4d71ffe0eb744fecb226128c18ee6f570b6664",
+    "holdout": false
   },
   {
-    "hash": "e8856ce5a80deef481310c33deb9ad5811df213091d4e1e5eb525858cee7522b",
-    "key": "rv-Mishra's Factory",
-    "question": "Before the 2009 combat damage change, could you animate Mishra's Factory after damage was put on the stack and still have it survive?",
+    "key": "rv-Nantuko Husk",
+    "question": "Could you once block with a creature, let combat damage go on the stack, then sacrifice that creature to Nantuko Husk and still deal its damage?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: requires the 2009 rules-change article and the pre-2009 CR. Not answerable from the current corpus.",
+    "expectedVerdict": "Yes, before the Magic 2010 rules change in July 2009. Not since. Wizards named this exact interaction as one of the confusing cases the change removed. The last chance to sacrifice is now the declare blockers step.",
     "requiredRuleNumbers": [
       "510.1"
     ],
-    "requiredCardIds": [
-      "card.5963e0ef-e0bc-4611-ad4f-813a4c0eacfb"
-    ],
-    "reviewState": "draft"
+    "requiredCardIds": [],
+    "reviewState": "verified",
+    "hash": "a8e48a90eb2b7b437edd7a609fc3d7e8e8326dc4d94ed0e5f05f466594def675",
+    "holdout": false
   },
   {
-    "hash": "6e7fda8796f4958d080fdb00e22f838caec6bf415854064381e973d6248e5a8b",
     "key": "rv-Fireball",
     "question": "If I tap for more mana than I spend on Fireball, do I take damage at the end of the phase?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: mana burn was removed by the Magic 2010 rules change. Requires a dated source before this counts.",
+    "expectedVerdict": "No. Mana burn was eliminated as a game concept by the Magic 2010 rules change in July 2009. Unspent mana simply empties from your mana pool.",
     "requiredRuleNumbers": [],
     "requiredCardIds": [
       "card.aa7714b0-2bfb-458a-8ebf-37ec2c53383e"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "6e7fda8796f4958d080fdb00e22f838caec6bf415854064381e973d6248e5a8b",
+    "holdout": false
   },
   {
-    "hash": "6a67f92522b55f7252f2ba6446786f66838fa36c782c046eb74e9040aba52075",
     "key": "rv-Black Lotus",
-    "question": "Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at end of phase?",
+    "question": "Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at the end of the phase?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: mana burn era question. Requires a pre-2010 rules source.",
+    "expectedVerdict": "You took one damage per unspent mana, which was called mana burn. That rule existed in 2005 and was eliminated by the Magic 2010 rules change in July 2009, so it does not apply today.",
     "requiredRuleNumbers": [],
     "requiredCardIds": [
       "card.5089ec1a-f881-4d55-af14-5d996171203b"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "76357a479e198943df5f14fb494d719fddb7314a2da83b0471e2e9baefb6b15f",
+    "holdout": true
   },
   {
-    "hash": "bf3beaf9d85bf5dc2952de690d0cb1dd435efbc390471956a32e51d72eb65245",
     "key": "rv-Shivan Dragon",
-    "question": "Does Shivan Dragon's firebreathing ability use the stack, and can it be activated after blockers are declared?",
+    "question": "Could you once put combat damage on the stack and then pump Shivan Dragon to change how much damage it dealt?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: verify against current CR 608.2 and the combat steps before promoting.",
+    "expectedVerdict": "No, and this is the direction of the change people misremember. Before July 2009 damage was locked in when it went on the stack, so pumping afterwards did not increase it. Since the Magic 2010 change combat damage no longer uses the stack at all, so the last chance to pump is the declare blockers step.",
     "requiredRuleNumbers": [
-      "608.2",
-      "510.1"
+      "510.1",
+      "510.2"
     ],
     "requiredCardIds": [
       "card.711eea87-0fa3-46e0-a42b-fa5a86455f04"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "365842225eca1027e86a8096b975bd2180be44dc0a377a8bd88747272a0141a5",
+    "holdout": false
   },
   {
-    "hash": "78a762a7f9c951b33c26dea8272beb179fade6284b529c6e2c094245c12f3b2e",
     "key": "rv-Word of Command",
     "question": "When Word of Command resolves, who controls the opponent, and for how long?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: answerable from current Oracle text plus CR 608.2. Verify the exact duration wording.",
+    "expectedVerdict": "You control that player until Word of Command finishes resolving, and if the chosen card is cast as a spell you control the player while that spell is resolving too. The complete current Oracle text must be quoted, including the mana-ability restrictions, which appear nowhere on the Alpha printing.",
     "requiredRuleNumbers": [
-      "608.2"
+      "108.1"
     ],
     "requiredCardIds": [
       "card.e8ad3a77-b293-4d69-b080-27ca9f95d443"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "78a762a7f9c951b33c26dea8272beb179fade6284b529c6e2c094245c12f3b2e",
+    "holdout": false
   },
   {
-    "hash": "134e68399e8e915e9d34b6e28791bfa7c4f96f3ed207f30452ec7c37c68bfdac",
     "key": "rv-Time Vault",
-    "question": "How does Time Vault's current Oracle text differ from what is printed, and which governs?",
+    "question": "How does Time Vault's current Oracle text differ from what is printed on the Alpha card, and which governs?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: Oracle governs under CR 108.1. Verify the printed text against MTGJSON originalText before promoting.",
+    "expectedVerdict": "The Alpha card reads that you untap it by skipping a turn. Current Oracle text instead says that if you would begin your turn while it is tapped you may skip that turn and untap it, and it adds that the artifact enters tapped. Oracle governs under CR 108.1.",
     "requiredRuleNumbers": [
       "108.1"
     ],
     "requiredCardIds": [
       "card.99d4d99d-cf56-45aa-aa39-a250695612f2"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "2755164dd9e0e7fa8059249818ba0d280607f516a9ff199378cc53e97e60919d",
+    "holdout": true
   },
   {
-    "hash": "8dfb3e12fe11304299e477443a5b33e036a3acad9f5cc7ffcaa17f9e84a84a9b",
     "key": "rv-Chaos Orb",
-    "question": "Is Chaos Orb's physical dexterity requirement still part of its Oracle text?",
+    "question": "Is Chaos Orb's physical flip requirement still part of its Oracle text?",
     "questionType": "rulesVersion",
-    "expectedVerdict": "DRAFT: uncertainty case. Expect the agent to say what it cannot establish rather than guess.",
+    "expectedVerdict": "Yes. Current Oracle text still requires flipping the card onto the battlefield from a height of at least one foot, and it must turn over completely at least once. The wording was retemplated but the physical requirement remains.",
     "requiredRuleNumbers": [
       "108.1"
     ],
     "requiredCardIds": [
       "card.edb455f4-8dc9-4b7c-b25c-cb51b7dfbb41"
     ],
-    "reviewState": "draft"
+    "reviewState": "verified",
+    "hash": "0907feaee272280e4cf4007fa8bbb96d60102eb65c599d2ac3079b5c34001af3",
+    "holdout": false
   },
   {
-    "hash": "c5302808e3d3762b9b8508029d55b7e2a67b926039aad1e7e5bd1457f39c63a6",
     "key": "rv-Benalish Hero",
     "question": "The printed card just says 'Bands'. What does the card actually do, and did its function change?",
     "questionType": "rulesVersion",
@@ -392,10 +416,11 @@
     "requiredCardIds": [
       "card.4c81cfb7-8765-4e28-ae33-4287fa9a86cc"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "c5302808e3d3762b9b8508029d55b7e2a67b926039aad1e7e5bd1457f39c63a6",
+    "holdout": false
   },
   {
-    "hash": "d94772a720da717d2c77ba4689a7c8adc7391e8eed3dcd2febbaaa11dbf9dfd5",
     "key": "rv-Lightning Bolt",
     "question": "My Alpha Lightning Bolt says 'one target'. Can I still point it at a planeswalker?",
     "questionType": "rulesVersion",
@@ -406,6 +431,8 @@
     "requiredCardIds": [
       "card.4457ed35-7c10-48c8-9776-456485fdf070"
     ],
-    "reviewState": "verified"
+    "reviewState": "verified",
+    "hash": "d94772a720da717d2c77ba4689a7c8adc7391e8eed3dcd2febbaaa11dbf9dfd5",
+    "holdout": false
   }
 ]

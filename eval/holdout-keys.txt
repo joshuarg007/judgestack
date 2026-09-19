@@ -1,0 +1,12 @@
+# Holdout membership, pinned from the split in force during the first tuning runs.
+# Never edit or regenerate this file. Rewording a question keeps its membership.
+leg-Demonic Tutor
+leg-Golgari Grave-Troll
+leg-Sol Ring
+pvo-2ED-Ice Storm
+pvo-LEA-Benalish Hero
+pvo-LEA-Demonic Tutor
+pvo-LEB-Paralyze
+pvo-LEB-Sol Ring
+rv-Black Lotus
+rv-Time Vault
