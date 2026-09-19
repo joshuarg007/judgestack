@@ -83,7 +83,14 @@ const byNumber = new Map(stored.map((r) => [r.number, r._id]))
 for (const d of docs) {
   const cited = (d as any)._citedRules as string[]
   delete (d as any)._citedRules
-  d.rules = cited.filter((n) => byNumber.has(n)).map((n) => ({ _type: 'reference', _ref: byNumber.get(n)!, _key: n }))
+  // Definitions cite whole rules ("see rule 510"), while we store subrules
+  // ("510.1"). Link a bare rule number to every stored subrule beneath it.
+  const refs = new Map<string, string>()
+  for (const n of cited) {
+    if (byNumber.has(n)) { refs.set(n, byNumber.get(n)!); continue }
+    for (const [num, sid] of byNumber) if (num.startsWith(`${n}.`)) refs.set(num, sid)
+  }
+  d.rules = [...refs].map(([n, ref]) => ({ _type: 'reference', _ref: ref, _key: n }))
 }
 
 console.log(`writing ${docs.length}/${wanted.length} glossary terms`)
