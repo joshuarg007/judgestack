@@ -115,3 +115,19 @@ footer a { color: inherit; }
 .explainer-list li { margin-bottom: 3px; }
 footer p { margin: 0 0 8px; }
 footer p:last-child { margin-bottom: 0; }
+
+.printings { display: flex; flex-wrap: wrap; gap: 20px; }
+.printing { margin: 0; width: 220px; }
+.printing img {
+  width: 100%; height: auto; display: block;
+  border-radius: 4.75% / 3.5%;
+}
+.printing figcaption {
+  font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.5;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.printing .artist { font-style: italic; }
+@media (max-width: 560px) {
+  .printings { gap: 14px; justify-content: center; }
+  .printing { width: 100%; max-width: 260px; }
+}

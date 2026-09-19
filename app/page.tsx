@@ -13,6 +13,10 @@ type Typed = {
   ruleCitations: { number: string; text: string }[]
   conflict: { present: boolean; explanation: string }
 }
+type Printing = {
+  _id: string; setName: string; setCode: string; releasedAt: string
+  imageUrl: string; artist: string; originalText: string; card: string
+}
 type Result = {
   answer: string; typed: Typed | null; typedError: string | null
   model: string; retrieval: string; latencyMs: number
@@ -41,9 +45,10 @@ export default function Page() {
   const [res, setRes] = useState<Result | null>(null)
   const [err, setErr] = useState<string | null>(null)
   const [showDetail, setShowDetail] = useState(false)
+  const [printings, setPrintings] = useState<Printing[]>([])
 
   async function ask(question: string) {
-    setLoading(true); setErr(null); setRes(null); setQ(question)
+    setLoading(true); setErr(null); setRes(null); setPrintings([]); setQ(question)
     try {
       const r = await fetch('/api/ask', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -52,6 +57,13 @@ export default function Page() {
       const data = await r.json()
       if (!r.ok) throw new Error(data.error ?? `HTTP ${r.status}`)
       setRes(data)
+      if (data.retrievedIds?.length) {
+        const pr = await fetch('/api/cards', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ids: data.retrievedIds }),
+        })
+        if (pr.ok) setPrintings((await pr.json()).printings ?? [])
+      }
     } catch (e) { setErr((e as Error).message) } finally { setLoading(false) }
   }
 
@@ -174,6 +186,24 @@ export default function Page() {
               <h2>Unstructured answer</h2>
               <p className="meta">Could not format this into the standard shape{res.typedError ? `: ${res.typedError}` : ''}. Showing the raw text.</p>
               <p className="answer">{res.answer}</p>
+            </div>
+          )}
+
+          {printings.length > 0 && (
+            <div className="card">
+              <h2>The cards involved</h2>
+              <div className="printings">
+                {printings.map((p) => (
+                  <figure key={p._id} className="printing">
+                    {/* Whole card, uncropped and unaltered, artist credited. */}
+                    <img src={p.imageUrl} alt={`${p.card}, ${p.setName} printing`} loading="lazy" />
+                    <figcaption>
+                      {p.setName} ({p.releasedAt?.slice(0, 4)})<br />
+                      <span className="artist">Illustrated by {p.artist}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
           )}
 

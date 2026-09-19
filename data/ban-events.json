@@ -1,27 +1,31 @@
 {
-  "note": "Hand-curated. Scryfall gives current legality only, never the dated sequence.",
+  "note": "Hand-curated from the actual Wizards announcements. Scryfall gives current legality only, never the dated sequence, so this is the only source of 'since when'. Every entry must carry the permalink of the announcement that made the change; do not infer a date from Scryfall.",
+  "verifiedAgainst": "Each announcementUrl was fetched and the wording confirmed on 2026-09-18.",
   "events": [
     {
       "card": "The Fantasticar",
       "format": "legacy",
       "status": "banned",
       "effectiveFrom": "2026-08-10",
-      "announcementUrl": "https://magic.wizards.com/en/news"
+      "announcementUrl": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026",
+      "quote": "The Fantasticar is banned. Changes effective as of August 10, 2026."
     },
     {
       "card": "The Fantasticar",
       "format": "vintage",
       "status": "restricted",
       "effectiveFrom": "2026-08-10",
-      "announcementUrl": "https://magic.wizards.com/en/news"
-    },
-    {
-      "card": "The Fantasticar",
-      "format": "commander",
-      "status": "legal",
-      "effectiveFrom": "2026-06-26",
-      "announcementUrl": "https://magic.wizards.com/en/news"
+      "announcementUrl": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-august-10-2026",
+      "quote": "The Fantasticar is restricted. Changes effective as of August 10, 2026."
     }
   ],
-  "TODO": "Replace announcementUrl with the exact B&R announcement permalinks before the evaluation. Verify each effectiveFrom against the announcement, not against Scryfall."
+  "unverified": {
+    "note": "Known from Scryfall's current legality but with no announcement permalink confirmed yet. NOT ingested. The agent must answer 'not enough evidence' for the effective date of these until a permalink is added.",
+    "candidates": [
+      "The Fantasticar legal in commander since its 2026-06-26 release",
+      "Sol Ring banned in legacy",
+      "Nadu, Winged Wisdom banned in modern, legacy and commander",
+      "Dig Through Time and Treasure Cruise banned in modern and legacy"
+    ]
+  }
 }
