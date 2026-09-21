@@ -48,7 +48,7 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
 
   if (rig.kind === 'context') {
     // Evidence is retrieved first and injected. The model never chooses what to read.
-    const got = rig.build(question)
+    const got = await rig.build(question)
     evidence = got.text
     ids = got.ids
     const res = await generateText({

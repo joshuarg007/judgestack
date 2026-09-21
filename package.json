@@ -23,7 +23,9 @@
     "start": "next start",
     "studio": "sanity dev",
     "ingest:glossary": "tsx scripts/ingest-glossary.ts",
-    "apply:assisted": "tsx scripts/apply-assisted.ts"
+    "apply:assisted": "tsx scripts/apply-assisted.ts",
+    "smoke:planned": "tsx eval/planned-smoke.ts",
+    "slice:planned": "JUDGESTACK_RETRIEVAL=planned tsx eval/run-slice.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",
