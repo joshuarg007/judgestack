@@ -12,6 +12,30 @@
  *
  * Model and answer prompt are identical across all three. Only this differs.
  */
+/**
+ * Merge tool sets from several endpoints without losing any.
+ *
+ * Both Context endpoints expose `initial_context`, so a plain object spread let
+ * the second one shadow the first. The shadowed tool was the dataset's schema
+ * overview, which is why the structured condition cited rules well and retrieved
+ * almost no cards: the agent never learned the dataset had card or printing types.
+ * Only names that actually collide get namespaced, so the common case keeps the
+ * names the tool descriptions refer to.
+ */
+function mergeTools(sets: { prefix: string; tools: Record<string, unknown> }[]): Record<string, unknown> {
+  const seen = new Map<string, number>()
+  for (const set of sets) {
+    for (const name of Object.keys(set.tools)) seen.set(name, (seen.get(name) ?? 0) + 1)
+  }
+  const merged: Record<string, unknown> = {}
+  for (const set of sets) {
+    for (const [name, tool] of Object.entries(set.tools)) {
+      merged[(seen.get(name) ?? 0) > 1 ? `${set.prefix}_${name}` : name] = tool
+    }
+  }
+  return merged
+}
+
 export type Rig =
   | {
       kind: 'context'
@@ -45,7 +69,10 @@ export async function getRig(): Promise<Rig> {
     return {
       kind: 'tools',
       label: 'structured (GROQ + Knowledge Base)',
-      tools: { ...groq.tools, ...kb.tools },
+      tools: mergeTools([
+        { prefix: 'dataset', tools: groq.tools },
+        { prefix: 'knowledge_base', tools: kb.tools },
+      ]),
       close: async () => { await groq.client.close(); await kb.client.close() },
     }
   }

@@ -45,6 +45,13 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
   let ids: string[] = []
   let finalized = false
 
+  const flattenToolOutput = (o: unknown): string => {
+    if (typeof o === 'string') return o
+    const c = (o as any)?.content
+    if (Array.isArray(c)) return c.map((x: any) => x?.text ?? JSON.stringify(x)).join('\n')
+    return JSON.stringify(o)
+  }
+
   const clean = (t: string) => t.replace(/<think>[\s\S]*?<\/think>/gi, '').replace(/<\/?think>/gi, '').trim()
 
   if (rig.kind === 'context') {
@@ -74,9 +81,13 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
       console.warn(`[answer] ${toolErrors.length} tool call(s) failed: ` +
         toolErrors.map((e) => `${e.toolName}: ${e.error?.name ?? 'error'}`).join(', '))
     }
-    evidence = JSON.stringify(toolResults)
+    // MCP returns its payload inside content[].text, so the documents arrive as a
+    // JSON string nested inside JSON. Stringifying the whole result leaves every
+    // quote escaped, which is why rule numbers matched (bare digits) while document
+    // ids never did. Flatten to the text the tools actually returned.
+    evidence = toolResults.map((r: any) => flattenToolOutput(r.output ?? r.result)).join('\n\n')
     // Sanity documents carry `_id`, not `id`.
-    ids = [...new Set([...evidence.matchAll(/"_?id":"([^"]+)"/g)].map((m) => m[1]))]
+    ids = [...new Set([...evidence.matchAll(/"_?id":\s*"([^"]+)"/g)].map((m) => m[1]))]
 
     // Qwen3 intermittently ends a tool loop with an empty assistant message.
     // Replay the transcript once, no tools, no new evidence.
