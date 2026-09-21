@@ -25,7 +25,8 @@
     "ingest:glossary": "tsx scripts/ingest-glossary.ts",
     "apply:assisted": "tsx scripts/apply-assisted.ts",
     "smoke:planned": "tsx eval/planned-smoke.ts",
-    "slice:planned": "JUDGESTACK_RETRIEVAL=planned tsx eval/run-slice.ts"
+    "slice:planned": "JUDGESTACK_RETRIEVAL=planned tsx eval/run-slice.ts",
+    "score:hand": "tsx eval/score-by-hand.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",
