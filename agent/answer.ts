@@ -9,7 +9,7 @@
  * The second pass is given ONLY the transcript, so it cannot introduce facts.
  */
 import { generateText, stepCountIs } from 'ai'
-import { getModel, modelLabel, systemSuffix } from './model'
+import { getModel, modelLabel, systemSuffix, needsToolRepair } from './model'
 import { SYSTEM_PROMPT } from './prompt'
 import { AnswerSchema, type TypedAnswer } from './schema'
 import { parseAnswer, attachRuleText } from './parse'
@@ -62,7 +62,7 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
     const res = await generateText({
       model, system: SYSTEM_PROMPT + systemSuffix, prompt: question,
       tools: rig.tools as any, stopWhen: stepCountIs(10) as any,
-      experimental_repairToolCall: repairToolCall as any,
+      ...(needsToolRepair ? { experimental_repairToolCall: repairToolCall as any } : {}),
     })
     draft = clean(res.text)
     toolCallNames = res.steps.flatMap((s) => (s.toolCalls ?? []).map((c: any) => c.toolName))

@@ -57,3 +57,9 @@ export const suppressThinking =
 
 export const systemSuffix = suppressThinking ? '\n\n/no_think' : ''
 
+/**
+ * Only weak local models emit malformed tool arguments. Hosted providers with
+ * native tool calling produce valid JSON, and running the repair path against
+ * them adds a failure mode instead of removing one.
+ */
+export const needsToolRepair = provider === 'ollama'
