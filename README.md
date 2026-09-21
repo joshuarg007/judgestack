@@ -66,6 +66,29 @@ endorsed by Wizards. Portions of the materials used are property of Wizards of t
     npm run detect:differences  # textDifference records, no verdicts
     npm run budget              # fails if over budget
 
+## Retrieval conditions
+
+    JUDGESTACK_RETRIEVAL=lexical     BM25 over the flattened corpus, injected. The baseline.
+    JUDGESTACK_RETRIEVAL=structured  GROQ + Knowledge Base through Context MCP tools.
+    JUDGESTACK_RETRIEVAL=planned     the model emits a retrieval plan, code runs it as GROQ.
+
+`planned` is the fallback if Context access does not arrive before the deadline. It keeps
+the property the challenge asks for, the model choosing what to look up against real
+content, but reaches it through structured output rather than a tool loop, because qwen3
+under Ollama produces a usable JSON object far more reliably than it drives tools.
+
+It mirrors Context's two-source split. The Content Lake is queried with GROQ for cards,
+printings, format events, glossary terms and the allowlisted rule paragraphs. The full
+Comprehensive Rules are not dataset documents, deliberately, so the local CR chunks stand
+in for the Knowledge Base file source, restricted to the CR version in force for the
+question's date.
+
+The plan is the model's. The queries are ours. That distinction belongs in the writeup;
+`planned` is not Context and must not be described as if it were.
+
+    npm run smoke:planned    4 questions, plan through to evidence, no Context needed
+    npm run slice:planned    the gate, run against the planned rig
+
 ## The gate
 
     npm run slice

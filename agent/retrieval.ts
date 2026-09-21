@@ -5,15 +5,38 @@
  *            This is the specified baseline: plain retrieval, no agency.
  * structured GROQ plus Knowledge Base reads through Context MCP tools, so the
  *            model chooses what to look up and can follow references.
+ * planned    the model emits a retrieval plan, code runs it as GROQ against the
+ *            Content Lake. The fallback for structured if Context access does not
+ *            arrive: the model still chooses what to read and the reads still hit
+ *            real content, but through structured output rather than a tool loop.
  *
- * Model and answer prompt are identical across both. Only this differs.
+ * Model and answer prompt are identical across all three. Only this differs.
  */
 export type Rig =
-  | { kind: 'context'; label: string; build: (question: string) => { text: string; ids: string[] } }
+  | {
+      kind: 'context'
+      label: string
+      build: (question: string) => { text: string; ids: string[] } | Promise<{ text: string; ids: string[] }>
+    }
   | { kind: 'tools'; label: string; tools: Record<string, unknown>; close?: () => Promise<void> }
 
 export async function getRig(): Promise<Rig> {
   const mode = process.env.JUDGESTACK_RETRIEVAL ?? 'lexical'
+
+  if (mode === 'planned') {
+    const { plannedContext } = await import('./planned')
+    return {
+      kind: 'context',
+      label: 'planned (model plan, GROQ against the Content Lake)',
+      build: async (question: string) => {
+        const res = await plannedContext(question)
+        if (res.planError) console.warn(`[planned] plan failed: ${res.planError}`)
+        else if (res.emptyPlan) console.warn('[planned] plan returned no matching documents')
+        else console.log(`[planned] ${res.ids.length} documents: ${JSON.stringify(res.plan)}`)
+        return { text: res.text, ids: res.ids }
+      },
+    }
+  }
 
   if (mode === 'structured') {
     const { connectGroq, connectKnowledgeBase } = await import('./mcp')

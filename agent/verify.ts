@@ -4,7 +4,7 @@
  */
 export type Retrieved = { ids: Set<string>; ruleNumbers: Set<string> }
 
-export function collectRetrieved(toolResults: { result?: unknown }[]): Retrieved {
+export function collectRetrieved(toolResults: { result?: unknown; output?: unknown }[]): Retrieved {
   const ids = new Set<string>()
   const ruleNumbers = new Set<string>()
   const walk = (v: unknown) => {
@@ -14,7 +14,10 @@ export function collectRetrieved(toolResults: { result?: unknown }[]): Retrieved
     } else if (Array.isArray(v)) v.forEach(walk)
     else if (v && typeof v === 'object') Object.values(v).forEach(walk)
   }
-  toolResults.forEach((r) => walk(r.result))
+  // AI SDK v5 called this `result`; v6 calls it `output`. Reading only the old
+  // name silently produced an empty retrieved set, which failed traceable-ids
+  // and made every citation look unsupported.
+  toolResults.forEach((r) => walk(r.output ?? r.result))
   return { ids, ruleNumbers }
 }
 

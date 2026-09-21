@@ -13,7 +13,8 @@ function auth() {
 
 async function connect(url: string, label: string) {
   const client = await createMCPClient({
-    transport: { type: 'sse', url, headers: auth() },
+    // Context endpoints answer JSON-RPC over plain HTTP. SSE returns 405.
+    transport: { type: 'http', url, headers: auth() },
   })
   const tools = await client.tools()
   console.log(`[${label}] connected, tools: ${Object.keys(tools).join(', ')}`)

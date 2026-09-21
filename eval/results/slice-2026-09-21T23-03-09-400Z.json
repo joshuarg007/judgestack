@@ -1,0 +1,65 @@
+{
+  "model": "deepseek:deepseek-flash",
+  "ranAt": "2026-09-21T23:03:09.400Z",
+  "results": [
+    {
+      "endpoint": "groq",
+      "prompt": "Explain how Word of Command works under the current rules, then compare its complete Oracle text with the selected printed wording. Do not silently truncate either text.",
+      "latencyMs": 34270,
+      "toolCalls": [
+        "initial_context",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query",
+        "groq_query"
+      ],
+      "retrievedIds": [],
+      "retrievedRuleNumbers": [],
+      "unsupportedCitations": [
+        "108.1",
+        "100.2",
+        "100.4",
+        "101.1",
+        "510.1",
+        "510.2",
+        "608.2",
+        "700.2"
+      ],
+      "automatedChecks": {
+        "retrieves-card-and-printing": true,
+        "complete-oracle-text": true,
+        "traceable-ids": false
+      },
+      "automatedPass": false,
+      "response": "Question type: printedVsOracle\nVerdict: Under current Oracle text (which governs per CR 108.1), Word of Command targets an opponent, lets you look at their hand and choose a card, gives you control of that player until the spell finishes resolving so that you make them play that card if able under strict mana-ability limits, and extends your control over them while a spell cast this way resolves — while the printed wording has no target, says \"you make all the decisions it calls for,\" and carries an uncounterable clause that no longer exists.\nMissing: None for the card texts themselves. However, this corpus holds only eight Comprehensive Rules paragraphs (100.2, 100.4, 101.1, 108.1, 510.1, 510.2, 608.2, 700.2); it contains no CR section on controlling another player, so the underlying mechanics of player control are supported here only by the card's own text and its official rulings.\nWhy: This question turns on a card-text comparison, so the current Oracle wording decides under CR 108.1, supported by a reviewed decision document for this exact card (reviewedBy \"joshua\", reviewed 2026-09-19; note the document's claims array is empty and confirmedByHuman is null). The three printings of Word of Command all carry identical printed text (Alpha #136, Beta and Unlimited #137), and all three text-comparison records rate the Oracle/printed relationship as a \"functional\" difference at 0.257 similarity, so the change is not merely cosmetic. The operational detail of how the card plays comes from the card's official rulings, which the corpus retains dated 2004, 2009, 2011 and 2016.\nGoverning authority: Current Oracle text under CR 108.1 (\"Use the Oracle card reference when determining a card's wording\"), reinforced by the reviewed decision decision.Word-of-Command.0.257; CR 101.1 explains why the card's own text takes precedence over a general rule where they conflict.\nQuote — Oracle text (card.e8ad3a77, currentAsOf 2026-09-18), complete: \"Look at target opponent's hand and choose a card from it. You control that player until Word of Command finishes resolving. The player plays that card if able. While doing so, the player can activate mana abilities only if they're from lands that player controls and only if mana they produce is spent to activate other mana abilities of lands the player controls and/or to play that card. If the chosen card is cast as a spell, you control the player while that spell is resolving.\"\nQuote — printed text, Unlimited Edition (printing.239c8547, 2ED #137, released 1993-12-01), complete: \"You may look at opponent's hand and choose any card opponent can legally play using mana from his or her mana pool or lands. Opponent must play this card immediately; you make all the decisions it calls for. This spell may not be countered after you have looked at opponent's hand.\"\nQuote — printed text, Limited Edition Alpha (printing.96c21429, LEA #136): \"You may look at opponent's hand and choose any card opponent can legally play using mana from his or her mana pool or lands. Opponent must play this card immediately; you make all the decisions it calls for. This spell may not be countered after you have looked at opponent's hand.\" (Identical to the Unlimited text above; Limited Edition Beta printing.7d37b529, LEB #137, is also identical word-for-word.)\nQuote — CR 108.1 (rule.108.1.2026-09-25): \"Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com.\"\nQuote — reviewed decision resolution (decision.Word-of-Command.0.257): \"Oracle governs under CR 108.1: the printed uncounterable clause was removed entirely, and control of the player replaced \"you make all the decisions it calls for\", adding mana-ability restrictions that appear nowhere on the printed card.\"\nQuote — ruling 2004-10-04: \"To \"play a card\" is to either cast a spell or to put a land onto the battlefield using the main phase special action.\"\nQuote — ruling 2011-01-01 (play requirement): \"You must order your opponent to play the chosen card if it is possible to do so.\"\nQuote — ruling 2011-01-01 (land play): \"You may Command your opponent to play a land (if they have not already done so this turn).\"\nQuote — ruling 2011-01-01 (responses): \"Since this spell is an instant, your opponent gets a chance to respond to it as normal. Once this spell resolves, you look at your opponent's hand and choose a card. Note that it is common practice to respond to Word of Command by using up any spells or mana you have prior to letting it resolve.\"\nQuote — ruling 2011-01-01 (information): \"You control the player while this spell is resolving, which means you get to see anything they can see. If that player is required to search their library as part of playing the card or as part of its resolution if it's cast as a spell, then you can see the cards in that player's library as well.\"\nQuote — ruling 2016-07-13 (information): \"While controlling another player, you can see all cards in the game that player can see. This includes cards in that player's hand, face-down cards that player controls, and any cards in that player's library the player may look at.\"\nQuote — ruling 2016-07-13 (sideboard): \"Controlling a player doesn't allow you to look at that player's sideboard. If an effect instructs that player to choose a card from outside the game, you can't have that player choose any card.\"\nQuote — ruling 2009-10-01 (mana): \"You do get to choose which lands get tapped. You can make them choose an optional mana generating ability of the land that they tap, such as making them tap and sacrifice the land instead of just tap it.\"\nQuote — ruling 2011-01-01 (limits): \"Word of Command can't be used to force a player to play a card that isn't in their hand.\"\nQuote — ruling 2011-01-01 (alternate costs): \"If there is a non-mana way to cast a spell, as with Pitch Spells, you may require that way to be used if it is possible to do so.\"\nQuote — ruling 2011-01-01 (countering): \"Your opponent can't counter the Word of Command after letting you look at their hand, but they can attempt to counter the spell you force them to cast.\"\nRules: 108.1, 101.1, 608.2\nConflict: The printed wording's final sentence (\"This spell may not be countered after you have looked at opponent's hand\") has no counterpart in the Oracle text, and the reviewed decision states that clause \"was removed entirely\"; similarly, the printed \"you make all the decisions it calls for\" was replaced by actual control of the player plus mana-ability restrictions. The card's ruling list still retains a 2011-01-01 ruling phrased around not being able to counter Word of Command after looking, which reads against the Oracle text that grants no such protection, and the corpus does not reconcile the two. Under CR 108.1 the Oracle text wins, so the printed uncounterable clause and the printed \"decisions\" phrasing do not describe the card as it is currently played. A secondary difference: the printed text is untargeted (\"You may look at opponent's hand\") while the Oracle text targets (\"Look at target opponent's hand\"), so hexproof, shroud, or an illegal target now matter where the printed card implied no targeting at all.\nSources: card.e8ad3a77-b293-4d69-b080-27ca9f95d443, printing.239c8547-207b-41d1-a2be-8825bfc6ef7f, printing.7d37b529-8a41-4177-abef-614f363e69d1, printing.96c21429-98d3-416b-be00-6aa9c4c5a006, diff.printing.239c8547-207b-41d1-a2be-8825bfc6ef7f, diff.printing.7d37b529-8a41-4177-abef-614f363e69d1, diff.printing.96c21429-98d3-416b-be00-6aa9c4c5a006, decision.Word-of-Command.0.257, rule.108.1.2026-09-25, rule.101.1.2026-09-25, rule.608.2.2026-09-25, glossary.Oracle"
+    },
+    {
+      "endpoint": "knowledge_base",
+      "prompt": "Explain how Word of Command works under the current rules, then compare its complete Oracle text with the selected printed wording. Do not silently truncate either text.",
+      "latencyMs": 9062,
+      "toolCalls": [
+        "initial_context",
+        "knowledge_base_read",
+        "knowledge_base_read"
+      ],
+      "retrievedIds": [],
+      "retrievedRuleNumbers": [],
+      "unsupportedCitations": [
+        "108.1"
+      ],
+      "automatedChecks": {
+        "retrieves-card-and-printing": true,
+        "complete-oracle-text": false,
+        "traceable-ids": false
+      },
+      "automatedPass": false,
+      "response": "Question type: printedVsOracle\nVerdict: Not enough evidence\nMissing: The knowledge base returned no entries at all — no current Oracle text for Word of Command, no printing/printed-wording document, no official rulings, and no Comprehensive Rules paragraphs were retrievable, so neither the \"how it works under current rules\" explanation nor the Oracle-vs-printed comparison can be grounded.\nWhy: I initialized the session and the only knowledge base in the outline (`kbOT3Z2hXBoc`) reports \"0 entries\" with no entry paths to read. My two probe reads, including obvious candidate paths for the card, its rulings, and rules text, all came back with \"No readable entries found\". Since I am not permitted to supply Oracle text, printed wording, rule numbers, or rulings from my own memory, I cannot answer either half of the request without fabricating sources.\nGoverning authority: None available — the required authorities (current Oracle text under CR 108.1, plus a printing document for the printed wording) were not retrievable.\nQuote: None\nRules: None\nConflict: None\nSources: None (both `knowledge_base_read` calls failed; kbOT3Z2hXBoc returned \"No readable entries found\" for every path attempted)"
+    }
+  ]
+}

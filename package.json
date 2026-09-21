@@ -23,18 +23,21 @@
     "start": "next start",
     "studio": "sanity dev",
     "ingest:glossary": "tsx scripts/ingest-glossary.ts",
-    "apply:assisted": "tsx scripts/apply-assisted.ts"
+    "apply:assisted": "tsx scripts/apply-assisted.ts",
+    "smoke:planned": "tsx eval/planned-smoke.ts",
+    "slice:planned": "JUDGESTACK_RETRIEVAL=planned tsx eval/run-slice.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",
     "@ai-sdk/mcp": "^1",
-    "@ai-sdk/openai-compatible": "^1.0.54",
+    "@ai-sdk/openai-compatible": "^2.0.76",
     "@sanity/client": "^7",
-    "ai": "^5",
+    "ai": "^6.0.287",
     "next": "^15.5.25",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "sanity": "^5.1.0"
+    "sanity": "^5.1.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@types/node": "^24.13.6",
@@ -42,5 +45,10 @@
     "@types/react-dom": "^19.3.0",
     "tsx": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@ai-sdk/mcp": {
+      "@ai-sdk/provider-utils": "4.0.52"
+    }
   }
 }
