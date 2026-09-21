@@ -75,7 +75,8 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
         toolErrors.map((e) => `${e.toolName}: ${e.error?.name ?? 'error'}`).join(', '))
     }
     evidence = JSON.stringify(toolResults)
-    ids = [...new Set([...evidence.matchAll(/"id":"([^"]+)"/g)].map((m) => m[1]))]
+    // Sanity documents carry `_id`, not `id`.
+    ids = [...new Set([...evidence.matchAll(/"_?id":"([^"]+)"/g)].map((m) => m[1]))]
 
     // Qwen3 intermittently ends a tool loop with an empty assistant message.
     // Replay the transcript once, no tools, no new evidence.
