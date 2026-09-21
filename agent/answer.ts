@@ -14,6 +14,7 @@ import { SYSTEM_PROMPT } from './prompt'
 import { AnswerSchema, type TypedAnswer } from './schema'
 import { parseAnswer, attachRuleText } from './parse'
 import { collectRetrieved, unsupportedCitations } from './verify'
+import { repairToolCall } from './repair'
 
 export type AnswerResult = {
   model: string
@@ -61,10 +62,18 @@ export async function answer(question: string, rig: Rig): Promise<AnswerResult> 
     const res = await generateText({
       model, system: SYSTEM_PROMPT + systemSuffix, prompt: question,
       tools: rig.tools as any, stopWhen: stepCountIs(10) as any,
+      experimental_repairToolCall: repairToolCall as any,
     })
     draft = clean(res.text)
     toolCallNames = res.steps.flatMap((s) => (s.toolCalls ?? []).map((c: any) => c.toolName))
     const toolResults = res.steps.flatMap((s) => s.toolResults ?? [])
+    const toolErrors = res.steps.flatMap((s) =>
+      ((s.content ?? []) as any[]).filter((c) => c.type === 'tool-error'),
+    )
+    if (toolErrors.length) {
+      console.warn(`[answer] ${toolErrors.length} tool call(s) failed: ` +
+        toolErrors.map((e) => `${e.toolName}: ${e.error?.name ?? 'error'}`).join(', '))
+    }
     evidence = JSON.stringify(toolResults)
     ids = [...new Set([...evidence.matchAll(/"id":"([^"]+)"/g)].map((m) => m[1]))]
 
