@@ -46,6 +46,7 @@ export default function Page() {
   const [err, setErr] = useState<string | null>(null)
   const [showDetail, setShowDetail] = useState(false)
   const [printings, setPrintings] = useState<Printing[]>([])
+  const [asked, setAsked] = useState('')
   const [elapsed, setElapsed] = useState(0)
   const startedAt = useRef(0)
 
@@ -63,7 +64,7 @@ export default function Page() {
   }, [loading])
 
   async function ask(question: string) {
-    setLoading(true); setErr(null); setRes(null); setPrintings([]); setQ(question)
+    setLoading(true); setErr(null); setRes(null); setPrintings([]); setQ(question); setAsked(question)
     try {
       const r = await fetch('/api/ask', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -88,14 +89,12 @@ export default function Page() {
 
   return (
     <main className="wrap">
-      {(loading || res) && (
-        <div className="timer" role="status" aria-live="polite">
-          <span className="timer-value">{secs(loading ? elapsed : (res?.latencyMs ?? 0))}s</span>
-          <span className="timer-label">
-            {loading ? 'retrieving' : `${res?.toolCalls?.length ?? 0} tool calls`}
-          </span>
-        </div>
-      )}
+      <div className={`timer${loading ? ' timer-live' : ''}`} role="status" aria-live="polite">
+        <span className="timer-value">{secs(loading ? elapsed : (res?.latencyMs ?? 0))}s</span>
+        <span className="timer-label">
+          {loading ? 'retrieving' : res ? `${res.toolCalls?.length ?? 0} tool calls` : 'ready'}
+        </span>
+      </div>
       <header>
         <h1>JudgeStack</h1>
         <p className="tagline">Magic: The Gathering rules answers, with the sources that support them.</p>
@@ -129,6 +128,13 @@ export default function Page() {
           ))}
         </div>
       </section>
+
+      {asked && (
+        <section className="asked" aria-label="Question asked">
+          <p className="asked-label">Question</p>
+          <p className="asked-text">{asked}</p>
+        </section>
+      )}
 
       {loading && (
         <div className="card status">

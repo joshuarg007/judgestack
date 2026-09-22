@@ -146,6 +146,11 @@ footer p:last-child { margin-bottom: 0; }
   font-size: 19px; font-weight: 600; line-height: 1;
   color: var(--accent);
 }
+.timer-live { border-color: var(--accent); }
+.timer-live .timer-value { animation: timer-pulse 1.1s ease-in-out infinite; }
+@keyframes timer-pulse { 0%, 100% { opacity: 1 } 50% { opacity: .55 } }
+@media (prefers-reduced-motion: reduce) { .timer-live .timer-value { animation: none } }
+
 .timer-label {
   font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
   color: var(--muted);
@@ -154,3 +159,12 @@ footer p:last-child { margin-bottom: 0; }
   .timer { top: 8px; right: 8px; padding: 6px 9px; }
   .timer-value { font-size: 16px; }
 }
+
+/* The question as submitted, shown in full. The input truncates long questions
+   and the sample buttons show a short label, so neither is readable on screen. */
+.asked { margin: 0 0 26px; padding-left: 14px; border-left: 3px solid var(--accent); }
+.asked-label {
+  margin: 0 0 4px; font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.asked-text { margin: 0; font-size: 17px; line-height: 1.5; max-width: 62ch; }
