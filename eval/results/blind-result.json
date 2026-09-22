@@ -1,0 +1,183 @@
+{
+  "judgedAt": "2026-09-22T02:53:24.528Z",
+  "method": "blind: both conditions shuffled together, condition labels withheld from the judge",
+  "judgeOutputFile": "eval/results/blind-judgments.txt",
+  "judged": 20,
+  "expected": 20,
+  "missing": [],
+  "unrecognised": 0,
+  "tally": {
+    "structured": {
+      "n": 10,
+      "correct": 9,
+      "unsupported": 1
+    },
+    "lexical": {
+      "n": 10,
+      "correct": 1,
+      "unsupported": 7
+    }
+  },
+  "rows": [
+    {
+      "id": "A01",
+      "condition": "structured",
+      "hash": "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71",
+      "correct": true,
+      "unsupported": false,
+      "note": "reports all seven statuses and avoids unsupported effective dates"
+    },
+    {
+      "id": "A02",
+      "condition": "structured",
+      "hash": "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447",
+      "correct": true,
+      "unsupported": false,
+      "note": "quotes complete Oracle text, names Beta, and retrieves CR 108.1"
+    },
+    {
+      "id": "A03",
+      "condition": "structured",
+      "hash": "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9",
+      "correct": true,
+      "unsupported": false,
+      "note": "reports all six statuses from retrieved claims and the verified case"
+    },
+    {
+      "id": "A04",
+      "condition": "lexical",
+      "hash": "2755164dd9e0e7fa8059249818ba0d280607f516a9ff199378cc53e97e60919d",
+      "correct": false,
+      "unsupported": true,
+      "note": "lacks Oracle text and overextends CR 205.3f beyond subtypes"
+    },
+    {
+      "id": "A05",
+      "condition": "lexical",
+      "hash": "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a",
+      "correct": false,
+      "unsupported": true,
+      "note": "cannot provide the Oracle text and invokes unretrieved CR 108.1"
+    },
+    {
+      "id": "A06",
+      "condition": "lexical",
+      "hash": "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a",
+      "correct": false,
+      "unsupported": true,
+      "note": "treats the snapshot as effective announcements and invents a one-copy limit"
+    },
+    {
+      "id": "A07",
+      "condition": "structured",
+      "hash": "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5",
+      "correct": true,
+      "unsupported": false,
+      "note": "quotes the Oracle text, names Alpha, and retrieves CR 108.1"
+    },
+    {
+      "id": "A08",
+      "condition": "structured",
+      "hash": "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a",
+      "correct": true,
+      "unsupported": false,
+      "note": "reproduces complete banding text and names the Alpha printing"
+    },
+    {
+      "id": "A09",
+      "condition": "lexical",
+      "hash": "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20",
+      "correct": false,
+      "unsupported": true,
+      "note": "quotes both texts but asserts Oracle precedence without CR 108.1"
+    },
+    {
+      "id": "A10",
+      "condition": "structured",
+      "hash": "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20",
+      "correct": true,
+      "unsupported": false,
+      "note": "supplies both texts, CR 108.1, and cited targeting consequences"
+    },
+    {
+      "id": "A11",
+      "condition": "structured",
+      "hash": "76357a479e198943df5f14fb494d719fddb7314a2da83b0471e2e9baefb6b15f",
+      "correct": true,
+      "unsupported": false,
+      "note": "retrieved verified case supports mana burn and its July 2009 removal"
+    },
+    {
+      "id": "A12",
+      "condition": "lexical",
+      "hash": "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5",
+      "correct": false,
+      "unsupported": true,
+      "note": "omits required CR 108.1 while asserting Oracle authority"
+    },
+    {
+      "id": "A13",
+      "condition": "lexical",
+      "hash": "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71",
+      "correct": false,
+      "unsupported": false,
+      "note": "omits Legacy banned and Oathbreaker legal without inventing them"
+    },
+    {
+      "id": "A14",
+      "condition": "structured",
+      "hash": "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83",
+      "correct": true,
+      "unsupported": false,
+      "note": "reproduces Sol Ring's Oracle text, names Beta, and cites CR 108.1"
+    },
+    {
+      "id": "A15",
+      "condition": "lexical",
+      "hash": "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447",
+      "correct": false,
+      "unsupported": true,
+      "note": "gives complete text but asserts precedence without retrieving CR 108.1"
+    },
+    {
+      "id": "A16",
+      "condition": "structured",
+      "hash": "2755164dd9e0e7fa8059249818ba0d280607f516a9ff199378cc53e97e60919d",
+      "correct": true,
+      "unsupported": false,
+      "note": "compares both wordings and supports Oracle precedence and timing"
+    },
+    {
+      "id": "A17",
+      "condition": "lexical",
+      "hash": "76357a479e198943df5f14fb494d719fddb7314a2da83b0471e2e9baefb6b15f",
+      "correct": false,
+      "unsupported": false,
+      "note": "refuses because the required 2005 authority was not retrieved"
+    },
+    {
+      "id": "A18",
+      "condition": "lexical",
+      "hash": "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9",
+      "correct": true,
+      "unsupported": false,
+      "note": "reports all six statuses and limits the claim to the snapshot date"
+    },
+    {
+      "id": "A19",
+      "condition": "structured",
+      "hash": "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a",
+      "correct": false,
+      "unsupported": true,
+      "note": "says Commander only despite Vintage restriction and calls the snapshot effective"
+    },
+    {
+      "id": "A20",
+      "condition": "lexical",
+      "hash": "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83",
+      "correct": false,
+      "unsupported": true,
+      "note": "lacks current Oracle text yet asserts unretrieved Oracle authority"
+    }
+  ]
+}

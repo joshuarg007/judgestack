@@ -1,0 +1,20 @@
+A01 | verdict_correct=yes | reasoning_unsupported=no | reports all seven statuses and avoids unsupported effective dates
+A02 | verdict_correct=yes | reasoning_unsupported=no | quotes complete Oracle text, names Beta, and retrieves CR 108.1
+A03 | verdict_correct=yes | reasoning_unsupported=no | reports all six statuses from retrieved claims and the verified case
+A04 | verdict_correct=no | reasoning_unsupported=yes | lacks Oracle text and overextends CR 205.3f beyond subtypes
+A05 | verdict_correct=no | reasoning_unsupported=yes | cannot provide the Oracle text and invokes unretrieved CR 108.1
+A06 | verdict_correct=no | reasoning_unsupported=yes | treats the snapshot as effective announcements and invents a one-copy limit
+A07 | verdict_correct=yes | reasoning_unsupported=no | quotes the Oracle text, names Alpha, and retrieves CR 108.1
+A08 | verdict_correct=yes | reasoning_unsupported=no | reproduces complete banding text and names the Alpha printing
+A09 | verdict_correct=no | reasoning_unsupported=yes | quotes both texts but asserts Oracle precedence without CR 108.1
+A10 | verdict_correct=yes | reasoning_unsupported=no | supplies both texts, CR 108.1, and cited targeting consequences
+A11 | verdict_correct=yes | reasoning_unsupported=no | retrieved verified case supports mana burn and its July 2009 removal
+A12 | verdict_correct=no | reasoning_unsupported=yes | omits required CR 108.1 while asserting Oracle authority
+A13 | verdict_correct=no | reasoning_unsupported=no | omits Legacy banned and Oathbreaker legal without inventing them
+A14 | verdict_correct=yes | reasoning_unsupported=no | reproduces Sol Ring's Oracle text, names Beta, and cites CR 108.1
+A15 | verdict_correct=no | reasoning_unsupported=yes | gives complete text but asserts precedence without retrieving CR 108.1
+A16 | verdict_correct=yes | reasoning_unsupported=no | compares both wordings and supports Oracle precedence and timing
+A17 | verdict_correct=no | reasoning_unsupported=no | refuses because the required 2005 authority was not retrieved
+A18 | verdict_correct=yes | reasoning_unsupported=no | reports all six statuses and limits the claim to the snapshot date
+A19 | verdict_correct=no | reasoning_unsupported=yes | says Commander only despite Vintage restriction and calls the snapshot effective
+A20 | verdict_correct=no | reasoning_unsupported=yes | lacks current Oracle text yet asserts unretrieved Oracle authority
