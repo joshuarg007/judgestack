@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type Quote = { label: string; text: string; complete: boolean }
 type Typed = {
@@ -46,6 +46,21 @@ export default function Page() {
   const [err, setErr] = useState<string | null>(null)
   const [showDetail, setShowDetail] = useState(false)
   const [printings, setPrintings] = useState<Printing[]>([])
+  const [elapsed, setElapsed] = useState(0)
+  const startedAt = useRef(0)
+
+  // Live elapsed time while a question is in flight. Structured retrieval makes a
+  // dozen or so tool calls, so the wait is long enough that a silent page looks
+  // broken. Once the answer lands the server's own latencyMs replaces this, since
+  // that is the number the evaluation records and this one also covers the
+  // follow-up printings fetch.
+  useEffect(() => {
+    if (!loading) return
+    startedAt.current = performance.now()
+    setElapsed(0)
+    const id = setInterval(() => setElapsed(performance.now() - startedAt.current), 50)
+    return () => clearInterval(id)
+  }, [loading])
 
   async function ask(question: string) {
     setLoading(true); setErr(null); setRes(null); setPrintings([]); setQ(question)
@@ -69,8 +84,18 @@ export default function Page() {
 
   const t = res?.typed
 
+  const secs = (ms: number) => (ms / 1000).toFixed(1)
+
   return (
     <main className="wrap">
+      {(loading || res) && (
+        <div className="timer" role="status" aria-live="polite">
+          <span className="timer-value">{secs(loading ? elapsed : (res?.latencyMs ?? 0))}s</span>
+          <span className="timer-label">
+            {loading ? 'retrieving' : `${res?.toolCalls?.length ?? 0} tool calls`}
+          </span>
+        </div>
+      )}
       <header>
         <h1>JudgeStack</h1>
         <p className="tagline">Magic: The Gathering rules answers, with the sources that support them.</p>
