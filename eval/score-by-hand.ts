@@ -9,6 +9,9 @@
  *   npm run score:hand                          # newest result file
  *   npm run score:hand -- --condition lexical   # newest of that condition
  *   npm run score:hand -- --file eval/results/eval-structured-tuning-....json
+ *   npm run score:hand -- --condition structured --holdout   # only the held-out cases
+ *
+ * --holdout filters which rows are presented. It does not change what is scored.
  *
  * Every judgment is written as it is made, so quitting partway keeps the work.
  * Re-running skips answers already scored.
@@ -73,9 +76,14 @@ async function main() {
   console.log(`model: ${result.model}   condition: ${result.condition}   rows: ${result.rows.length}`)
   console.log(`writing: ${scorePath}\n`)
 
-  const todo = result.rows.filter((r: any) => !existing[r.hash] || existing[r.hash].verdictCorrect === null)
+  const holdoutOnly = process.argv.includes('--holdout')
+  const rows = holdoutOnly
+    ? result.rows.filter((r: any) => byHash.get(r.hash)?.holdout)
+    : result.rows
+  if (holdoutOnly) console.log(`--holdout: ${rows.length} of ${result.rows.length} rows are held out\n`)
+  const todo = rows.filter((r: any) => !existing[r.hash] || existing[r.hash].verdictCorrect === null)
   if (!todo.length) { console.log('Every answer already scored. Nothing to do.'); rl.close(); return }
-  console.log(`${todo.length} of ${result.rows.length} still to score. Ctrl-C any time; progress is kept.\n`)
+  console.log(`${todo.length} of ${rows.length} still to score. Ctrl-C any time; progress is kept.\n`)
 
   for (const [i, row] of todo.entries()) {
     const c = byHash.get(row.hash)

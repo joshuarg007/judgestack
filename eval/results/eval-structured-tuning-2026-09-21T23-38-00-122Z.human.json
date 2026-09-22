@@ -1,0 +1,134 @@
+{
+  "sourceFile": "eval/results/eval-structured-tuning-2026-09-21T23-38-00-122Z.json",
+  "model": "deepseek:deepseek-flash",
+  "condition": "structured",
+  "scoredAt": "2026-09-22T01:52:23.797Z",
+  "summary": {
+    "scored": 20,
+    "total": 20,
+    "verdictCorrect": "20/20",
+    "reasoningUnsupported": "3/20"
+  },
+  "judgments": {
+    "72b450389610227854872bd35593656da1b051cb962bc8ccadb9f73b4a3058a6": {
+      "hash": "72b450389610227854872bd35593656da1b051cb962bc8ccadb9f73b4a3058a6",
+      "verdictCorrect": true,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "ec7b90ea5432ffb2554a8e4a8e732f2d5ca48d8b2ea68f68ae935d94ef63ea4a": {
+      "hash": "ec7b90ea5432ffb2554a8e4a8e732f2d5ca48d8b2ea68f68ae935d94ef63ea4a",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "c909fdaf99b648fa1acd1abd67f97dbb3859e26be0e4712e3a04c4dbb6a0c678": {
+      "hash": "c909fdaf99b648fa1acd1abd67f97dbb3859e26be0e4712e3a04c4dbb6a0c678",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "bfe7200341658746074852ce4a10dfd6282ff8ce86e9beb6dbf89b5bc137ef0c": {
+      "hash": "bfe7200341658746074852ce4a10dfd6282ff8ce86e9beb6dbf89b5bc137ef0c",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "a106b87621be21c9446761da21e55ebb4adaa49e91b954eaa7342a39be3bfc8f": {
+      "hash": "a106b87621be21c9446761da21e55ebb4adaa49e91b954eaa7342a39be3bfc8f",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "c60f67ec81f5065b07070fb292105a525c7baf3f74c759173918d9a22e77558a": {
+      "hash": "c60f67ec81f5065b07070fb292105a525c7baf3f74c759173918d9a22e77558a",
+      "verdictCorrect": true,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "90559908d61c85bde798e85f39df175b1d9c45fbfe5b353f4436eeeaaaddda3d": {
+      "hash": "90559908d61c85bde798e85f39df175b1d9c45fbfe5b353f4436eeeaaaddda3d",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "8162be6d3e52c759df1c47267d0e8c15fb7ccfce21945345dcbcfcead72669d5": {
+      "hash": "8162be6d3e52c759df1c47267d0e8c15fb7ccfce21945345dcbcfcead72669d5",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "a455d3eb7fc7a6616de0cb7645afe867392f889330bf2593594b3b01ba900050": {
+      "hash": "a455d3eb7fc7a6616de0cb7645afe867392f889330bf2593594b3b01ba900050",
+      "verdictCorrect": true,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "fee1447b4c40c87f356da99d8576ea3964bb0574bc73ce8243934a9dbebeb148": {
+      "hash": "fee1447b4c40c87f356da99d8576ea3964bb0574bc73ce8243934a9dbebeb148",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "92d80506e08b214b80e894c807f9457bcd066aa27e07bc6656d44b2d56055ce1": {
+      "hash": "92d80506e08b214b80e894c807f9457bcd066aa27e07bc6656d44b2d56055ce1",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "e624e8470c2084ba82fd25018ff3aa9a51b4b84678b3019f24a0c119d34dd14b": {
+      "hash": "e624e8470c2084ba82fd25018ff3aa9a51b4b84678b3019f24a0c119d34dd14b",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "8af5d8ae6cd1524ec971e0090e4d71ffe0eb744fecb226128c18ee6f570b6664": {
+      "hash": "8af5d8ae6cd1524ec971e0090e4d71ffe0eb744fecb226128c18ee6f570b6664",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "a8e48a90eb2b7b437edd7a609fc3d7e8e8326dc4d94ed0e5f05f466594def675": {
+      "hash": "a8e48a90eb2b7b437edd7a609fc3d7e8e8326dc4d94ed0e5f05f466594def675",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "6e7fda8796f4958d080fdb00e22f838caec6bf415854064381e973d6248e5a8b": {
+      "hash": "6e7fda8796f4958d080fdb00e22f838caec6bf415854064381e973d6248e5a8b",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "365842225eca1027e86a8096b975bd2180be44dc0a377a8bd88747272a0141a5": {
+      "hash": "365842225eca1027e86a8096b975bd2180be44dc0a377a8bd88747272a0141a5",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "78a762a7f9c951b33c26dea8272beb179fade6284b529c6e2c094245c12f3b2e": {
+      "hash": "78a762a7f9c951b33c26dea8272beb179fade6284b529c6e2c094245c12f3b2e",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "0907feaee272280e4cf4007fa8bbb96d60102eb65c599d2ac3079b5c34001af3": {
+      "hash": "0907feaee272280e4cf4007fa8bbb96d60102eb65c599d2ac3079b5c34001af3",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "c5302808e3d3762b9b8508029d55b7e2a67b926039aad1e7e5bd1457f39c63a6": {
+      "hash": "c5302808e3d3762b9b8508029d55b7e2a67b926039aad1e7e5bd1457f39c63a6",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "d94772a720da717d2c77ba4689a7c8adc7391e8eed3dcd2febbaaa11dbf9dfd5": {
+      "hash": "d94772a720da717d2c77ba4689a7c8adc7391e8eed3dcd2febbaaa11dbf9dfd5",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    }
+  }
+}
