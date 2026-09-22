@@ -1,0 +1,558 @@
+You are grading answers from a Magic: The Gathering rules assistant.
+
+For each item you get the QUESTION, the EXPECTED VERDICT written by the question's author,
+and the ANSWER produced by a system. Answers come from two different systems in unknown
+proportion and in random order. You are not told which is which. Do not try to guess.
+
+For every item, output exactly one line:
+
+<id> | verdict_correct=yes|no | reasoning_unsupported=yes|no | one short clause of justification
+
+verdict_correct: does the answer reach the substance of the expected verdict? Ignore style,
+length and ordering. A correct verdict stated alongside a wrong extra conclusion is "no".
+
+reasoning_unsupported: does the answer rely on a fact, rule or consequence it never shows
+it retrieved? Volunteering true Magic knowledge that no cited source supports counts as "yes".
+Saying plainly that something could not be retrieved does NOT count as "yes".
+
+Output only those 20 lines. No preamble, no summary.
+
+--- A01 ---
+QUESTION
+Can I register Demonic Tutor today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Demonic Tutor is banned in historic as of 2026-09-18.
+Demonic Tutor is banned in legacy as of 2026-09-18.
+Demonic Tutor is legal in commander as of 2026-09-18.
+Demonic Tutor is legal in duel as of 2026-09-18.
+Demonic Tutor is legal in oathbreaker as of 2026-09-18.
+Demonic Tutor is restricted in timeless as of 2026-09-18.
+Demonic Tutor is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: Demonic Tutor can be registered today (as of 2026-09-18) — it is legal in commander, duel, and oathbreaker; it is banned in historic and legacy, and restricted in timeless and vintage.
+
+Missing: None for the legal/banned/restricted status itself. However, no effective date ("since when") can be given: the only dated format events in the corpus cover a different card, and the Demonic Tutor legality source is explicitly undated.
+Why: The reviewed decision document `case.leg-Demonic-Tutor` resolves this exact question from the current legality claims, and the seven per-format claims for this card agree with it. The restrictions you asked about are in timeless and vintage. Because the Scryfall legality source is published as "current state, undated" and no formatEvent exists for Demonic Tutor, the effective date of any of these statuses is not established by the retrieved sources.
+Governing authority: The current legality claims keyed to the card Demonic Tutor, under the reviewed decision `case.leg-Demonic-Tutor`; card identity from its current Oracle document.
+
+Quote [Demonic Tutor — Oracle text, current as of 2026-09-18]: Search your library for a card, put that card into your hand, then shuffle.
+Quote [claim.legality.…commander]: Demonic Tutor is legal in commander as of 2026-09-18.
+Quote [claim.legality.…duel]: Demonic Tutor is legal in duel as of 2026-09-18.
+Quote [claim.legality.…oathbreaker]: Demonic Tutor is legal in oathbreaker as of 2026-09-18.
+Quote [claim.legality.…historic]: Demonic Tutor is banned in historic as of 2026-09-18.
+Quote [claim.legality.…legacy]: Demonic Tutor is banned in legacy as of 2026-09-18.
+Quote [claim.legality.…timeless]: Demonic Tutor is restricted in timeless as of 2026-09-18.
+Quote [claim.legality.…vintage]: Demonic Tutor is restricted in vintage as of 2026-09-18.
+Quote [case.leg-Demonic-Tutor — expectedVerdict]: Per current claims:
+Demonic Tutor is banned in historic as of 2026-09-18.
+Demonic Tutor is banned in legacy as of 2026-09-18.
+Demonic Tutor is legal in commander as of 2026-09-18.
+Demonic Tutor is legal in duel as of 2026-09-18.
+Demonic Tutor is legal in oathbreaker as of 2026-09-18.
+Demonic Tutor is restricted in timeless as of 2026-09-18.
+Demonic Tutor is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+Rules: None
+Conflict: None. One caveat, not a conflict: the only dated status events in the corpus (`formatEvent`) are for The Fantasticar (legacy banned, vintage restricted, effective 2026-08-10), so they cannot date Demonic Tutor's statuses. The undated Scryfall claims and the reviewed decision govern the current state; the effective date is not enough evidence.
+Sources: card.82004860-e589-4e38-8d61-8c0210e4ea39, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.commander, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.duel, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.historic, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.legacy, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.oathbreaker, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.timeless, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.vintage, case.leg-Demonic-Tutor, formatEvent.The-Fantasticar.legacy.2026-08-10, formatEvent.The-Fantasticar.vintage.2026-08-10
+
+--- A02 ---
+QUESTION
+My Limited Edition Beta copy of Paralyze reads "Target creature is not untapped as normal during untap phase unless 4 mana are spent. Tap target creature when Paralyze is cast.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Enchant creature When this Aura enters, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step. At the beginning of the upkeep of enchanted creature's controller, that player may pay {4}. If the player does, untap the creature." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Oracle governs under CR 108.1, so your Beta Paralyze is played as the current Oracle wording — it taps the creature on entry, stops it untapping, and gives its controller an upkeep trigger allowing an optional {4} payment to untap it — not as the printed "4 mana during untap phase" text.
+Missing: None
+Why: A card's wording is determined by the Oracle reference, not by the printing in your hand, so the Beta sentence is superseded. The functional difference is where the payment happens and how: the printed card let mana be spent during the untap phase, while the current card puts an optional triggered ability at the beginning of the enchanted creature's controller's upkeep. The matching reviewed decision (a model-assisted draft, not human-confirmed, and carrying an empty claims array) agrees that Oracle governs and describes that same move; I also read the card's own rulings, which confirm the payment is optional.
+Governing authority: Current Oracle text, under CR 108.1 (Oracle is the up-to-date wording reference for all tournament-legal cards).
+Quote [printed — Limited Edition Beta, LEB #120]: Target creature is not untapped as normal during untap phase unless 4 mana are spent. Tap target creature when Paralyze is cast.
+Quote [current Oracle]: Enchant creature
+When this Aura enters, tap enchanted creature.
+Enchanted creature doesn't untap during its controller's untap step.
+At the beginning of the upkeep of enchanted creature's controller, that player may pay {4}. If the player does, untap the creature.
+Quote [ruling 2004-10-04]: Paying the cost is optional.
+Quote [ruling 2004-10-04]: Two Paralyzes are not cumulative. Paying either one will untap the creature.
+Quote [ruling 2007-09-16]: This is a change from the most recent wording. As was the case in the past, Paralyze itself has the last triggered ability, rather than granting that ability to the enchanted creature.
+Quote [decision.Paralyze.0.146 — model-assisted draft, unconfirmed]: Oracle governs under CR 108.1. Payment moved from the untap phase to a triggered ability at the beginning of the controller's upkeep, and the Aura framework was added.
+Quote [CR 108.1]: Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com.
+Rules: 108.1 (also retrieved verbatim but not governing here: 100.2, 100.4, 101.1, 510.1, 510.2, 608.2, 700.2)
+Conflict: The Beta printed text ("4 mana are spent" during the untap phase) conflicts with the Oracle wording (an optional {4} payment offered by a triggered ability at the beginning of the controller's upkeep). Oracle wins via CR 108.1. The textDifference record for this printing is marked "functional" (similarity 0.146), confirming the change is not merely cosmetic, and the 2007-09-16 ruling flags that the current ability structure itself is a wording change from an intermediate version.
+Sources: card.e9b4e857-39e5-4a06-89ad-3dd94b3f252a, printing.106d8401-f0e2-461e-b8ea-16d475db98da, diff.printing.106d8401-f0e2-461e-b8ea-16d475db98da, decision.Paralyze.0.146, rule.108.1.2026-09-25, rule.108.1.2026-08-07, glossary.Oracle, source.scryfall.2026-09-18
+
+--- A03 ---
+QUESTION
+Can I register Golgari Grave-Troll today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Golgari Grave-Troll is banned in modern as of 2026-09-18.
+Golgari Grave-Troll is legal in commander as of 2026-09-18.
+Golgari Grave-Troll is legal in duel as of 2026-09-18.
+Golgari Grave-Troll is legal in legacy as of 2026-09-18.
+Golgari Grave-Troll is legal in oathbreaker as of 2026-09-18.
+Golgari Grave-Troll is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: Yes — as of the corpus's current state (2026-09-18), Golgari Grave-Troll is legal in Commander, Duel, Legacy and Oathbreaker, banned in Modern, and restricted in Vintage.
+Missing: No dated announcement (formatEvent) exists for Golgari Grave-Troll, so the corpus cannot say since when any of these statuses has applied; and no retrieved source defines what "restricted" or "banned" means (no Tournament Rules document, no glossary entry for those terms was retrieved).
+Why: The card document establishes Golgari Grave-Troll's identity, and six legality claims attached to that card give its current format status; there is no conflicting source in the corpus. The six claims come from a Scryfall legalities export that it describes as "current state, undated," so the statuses are current-state only and carry no effective date. There is a human-verified adjudication case for exactly this question, and it says the same thing and explicitly warns that no effective date may be stated without a formatEvent.
+Governing authority: The Scryfall card-legalities claim set (source.scryfall.legalities.2026-09-18) for the statuses, corroborated by the verified adjudication case case.leg-Golgari-Grave-Troll; the card document supplies the card identity. Format legality is not decided by the Comprehensive Rules, so no CR paragraph governs here.
+Quote [card name/identity]: "Golgari Grave-Troll" — {4}{G}, Creature — Troll Skeleton, oracle text current as of 2026-09-18.
+Quote [claim.legality...commander]: "Golgari Grave-Troll is legal in commander as of 2026-09-18."
+Quote [claim.legality...duel]: "Golgari Grave-Troll is legal in duel as of 2026-09-18."
+Quote [claim.legality...legacy]: "Golgari Grave-Troll is legal in legacy as of 2026-09-18."
+Quote [claim.legality...modern]: "Golgari Grave-Troll is banned in modern as of 2026-09-18."
+Quote [claim.legality...oathbreaker]: "Golgari Grave-Troll is legal in oathbreaker as of 2026-09-18."
+Quote [claim.legality...vintage]: "Golgari Grave-Troll is restricted in vintage as of 2026-09-18."
+Quote [case.leg-Golgari-Grave-Troll expectedVerdict]: "Per current claims:\nGolgari Grave-Troll is banned in modern as of 2026-09-18.\nGolgari Grave-Troll is legal in commander as of 2026-09-18.\nGolgari Grave-Troll is legal in duel as of 2026-09-18.\nGolgari Grave-Troll is legal in legacy as of 2026-09-18.\nGolgari Grave-Troll is legal in oathbreaker as of 2026-09-18.\nGolgari Grave-Troll is restricted in vintage as of 2026-09-18.\nThe answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so \"since when\" is \"not enough evidence\" absent a formatEvent."
+Rules: None
+Conflict: None between sources — the card document, the six legality claims and the verified adjudication case agree. Note the corpus contains only two formatEvent documents (both for the card "The Fantasticar", dated 2026-08-10), so no dated event exists for this card and no date may be asserted.
+Sources: card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.commander, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.duel, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.legacy, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.modern, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.oathbreaker, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.vintage, case.leg-Golgari-Grave-Troll, source.scryfall.legalities.2026-09-18, source.scryfall.2026-09-18
+
+--- A04 ---
+QUESTION
+How does Time Vault's current Oracle text differ from what is printed on the Alpha card, and which governs?
+
+EXPECTED VERDICT
+The Alpha card reads that you untap it by skipping a turn. Current Oracle text instead says that if you would begin your turn while it is tapped you may skip that turn and untap it, and it adds that the artifact enters tapped. Oracle governs under CR 108.1.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Not enough evidence
+Missing: The current Oracle wording for Time Vault. The retrieval returned only period printings (Alpha, Beta, Unlimited) and Comprehensive Rules fragments; no Oracle card-reference document for Time Vault was retrieved, so the difference cannot be stated. Also missing: the text of CR 108.1 itself (it is only cross-referenced by CR 205.3f, not reproduced).
+Why: For a printed-vs-Oracle question, the two things needed are the printed wording and the current Oracle wording, plus the rule that makes Oracle the authority. The printed wording is fully present in the corpus, and the corpus does supply a rule fragment saying the Oracle card reference determines a card's subtypes and pointing to CR 108.1. But the actual Oracle text of Time Vault is absent from everything retrieved, so I cannot describe, quote, or compare it, and I will not reconstruct it from memory. A definite answer is therefore impossible on the evidence provided.
+Governing authority: Current Oracle text (Oracle card reference), per the retrieved CR 205.3f, which directs that the Oracle card reference be used and cross-references CR 108.1. The printed Alpha text governs nothing on its own; the retrieved printings documents record wording "as printed," not current wording.
+Quote [Time Vault, printed text — Limited Edition Alpha]: Tap to gain an additional turn after the current one. Time Vault doesn't untap normally during untap phase; to untap it, you must skip a turn. Time Vault begins tapped.
+Quote [Time Vault, printed text — Limited Edition Beta]: Tap to gain an additional turn after the current one. Time Vault doesn't untap normally during untap phase; to untap it, you must skip a turn. Time Vault begins tapped.
+Quote [Time Vault, printed text — Unlimited Edition]: Tap to gain an additional turn after the current one. Time Vault doesn't untap normally during untap phase; to untap it, you must skip a turn. Time Vault begins tapped.
+Quote [CR 205.3f]: 205.3f Many cards were printed with subtypes that are now obsolete. Many cards have retroactively received subtypes. Use the Oracle card reference to determine what a card's subtypes are. (See rule 108.1.)
+Quote [CR 406.8]: 406.8 Previously, the exile zone was called the "removed-from-the-game zone." Cards that were printed with text that "removes [an object] from the game" exiles that object. The same is true for cards printed with text that "sets [an object] aside." Cards that were printed with that text have received errata in the Oracle card reference.
+Rules: 205.3f, 406.8 (CR 108.1 appears only as a cross-reference inside 205.3f; its own text was not retrieved)
+Conflict: None. The printed Time Vault texts retrieved (Alpha, Beta, Unlimited) agree with each other; no Oracle wording was retrieved to compare against them.
+Sources: printing.902441dc-c976-4c92-b897-6376eaa0fe38, printing.1164f22f-2706-4f35-9f58-d0eb8c344396, printing.0b64dd0f-2e99-41bd-87aa-f623582d64d0, comprehensive-rules-2026-08-07.txt#205.3f, comprehensive-rules-2026-08-07.txt#406.8, comprehensive-rules-2026-09-25.txt#205.3f, comprehensive-rules-2026-09-25.txt#406.8
+
+--- A05 ---
+QUESTION
+My Limited Edition Alpha copy of Benalish Hero reads "Bands". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)" The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Not enough evidence
+Missing: The current Oracle wording for Benalish Hero, and the current Comprehensive Rules text defining the banding keyword ability. The retrieved corpus contains only printing records for this card — no Oracle card document, no rulings document, and no Comprehensive Rules paragraph was retrieved.
+Why: The retrieved records confirm only what was printed: "Bands" on Limited Edition Alpha, Beta, and Unlimited, and "Banding" on Fourth and Fifth Edition. Deciding what the card "actually does now" requires the current Oracle text and the rules for the banding keyword, neither of which appears in anything I retrieved. I cannot supply that wording or those rules from memory, so the question cannot be resolved from these sources.
+Governing authority: Current Oracle text (under CR 108.1) would decide this, but no Oracle document for Benalish Hero was retrieved.
+Quote [Benalish Hero, Limited Edition Alpha]: Bands
+Quote [Benalish Hero, Limited Edition Beta]: Bands
+Quote [Benalish Hero, Unlimited Edition]: Bands
+Quote [Benalish Hero, Fourth Edition]: Banding
+Quote [Benalish Hero, Fifth Edition]: Banding
+Rules: None
+Conflict: The printings disagree with each other on the ability's name ("Bands" versus "Banding"), but the retrieved material does not include the wording that would settle what the current card does, so no governing version can be identified.
+Sources: printing.11600105-56c6-4073-a4a6-8469030b39c9, printing.f62c68d0-9b1e-4abe-991d-a645effeb676, printing.9404e779-2065-4c4f-95d1-6997c7fea156, printing.fd204832-5f3b-4213-9c06-b89a296a9d47, printing.32dcd608-ef94-4047-841d-5c3471375d5d
+
+--- A06 ---
+QUESTION
+Can I register Sol Ring today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Sol Ring is banned in duel as of 2026-09-18.
+Sol Ring is banned in legacy as of 2026-09-18.
+Sol Ring is banned in oathbreaker as of 2026-09-18.
+Sol Ring is legal in commander as of 2026-09-18.
+Sol Ring is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: As of the dated announcements retrieved (2026-09-18), Sol Ring may be registered in Vintage (restricted to one copy) and in Commander, and may not be registered in Duel, Legacy, or Oathbreaker; the sources do not cover any other format.
+Missing: The status of Sol Ring in every format other than Vintage, Commander, Duel, Legacy and Oathbreaker (e.g. Standard, Modern, Pioneer, Pauper) was not retrieved. The evidence also does not confirm that 2026-09-18 is "today", so I cannot certify the announcements are the currently effective ones; no revision or announcement date later than 2026-09-18 appears.
+Why: The deck-registration question is decided by the format legality announcements, and the retrieved claims each carry the same effective date. Only Vintage carries a restriction, which limits the card to a single copy rather than banning it; the other three non-Commander formats listed are outright bans. Because no other format announcement was returned, I can only report the formats that appear in the evidence and cannot state anything about the rest.
+Governing authority: The per-format legality claims (announcements dated 2026-09-18), under the card identity established by the current Oracle text of Sol Ring.
+Quote [current Oracle text]: Sol Ring
+Artifact
+{T}: Add {C}{C}.
+Quote [legality — vintage]: Sol Ring is restricted in vintage as of 2026-09-18.
+Quote [legality — commander]: Sol Ring is legal in commander as of 2026-09-18.
+Quote [legality — duel]: Sol Ring is banned in duel as of 2026-09-18.
+Quote [legality — legacy]: Sol Ring is banned in legacy as of 2026-09-18.
+Quote [legality — oathbreaker]: Sol Ring is banned in oathbreaker as of 2026-09-18.
+Quote [printed — Unlimited Edition]: Sol Ring, as printed in Unlimited Edition: Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.
+Quote [printed — Limited Edition Beta]: Sol Ring, as printed in Limited Edition Beta: Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.
+Quote [printed — Limited Edition Alpha]: Sol Ring, as printed in Limited Edition Alpha: Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.
+Rules: None relevant to format legality; the only paragraphs retrieved (CR 804.1, CR 701.54c) are unrelated to this question.
+Conflict: None among the retrieved legality announcements; each format is governed by its own list, and Vintage's restriction (one copy) and Commander's legality do not contradict the bans elsewhere.
+Sources: claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.vintage, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.commander, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.duel, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.legacy, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.oathbreaker, card.6ad8011d-3471-4369-9d68-b264cc027487, printing.e07f656c-97b5-4147-821a-edbb49f34e19, printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3, printing.c4300d24-1cae-4dd5-be7e-38cc677cf5bd
+
+--- A07 ---
+QUESTION
+My Limited Edition Alpha copy of Demonic Tutor reads "You may search your library for one card and take it into your hand. Reshuffle your library afterwards.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Search your library for a card, put that card into your hand, then shuffle." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Your Alpha wording no longer governs: current Oracle text for Demonic Tutor is "Search your library for a card, put that card into your hand, then shuffle."
+Missing: None
+Why: Under CR 108.1 the Oracle card reference, not the card in your hand, determines a card's wording, so the Alpha sentence you quoted is not the instruction the card follows today. The dataset labels this exact Alpha-vs-Oracle difference (similarity 0.35) as "nonfunctional," meaning the wording was retemplated without changing what the card does; the Alpha text is simply superseded. The question also matches a verified adjudication case (case.pvo-LEA-Demonic-Tutor) whose required rule is 108.1; note there is no separate reviewed decision document for Demonic Tutor in this dataset, only that case.
+Governing authority: Current Oracle text, under CR 108.1 ("Use the Oracle card reference when determining a card's wording"), sourced from the Scryfall Oracle Cards and Rulings bulk export, current as of 2026-09-18.
+Quote [Oracle text — Demonic Tutor, complete, current as of 2026-09-18]: Search your library for a card, put that card into your hand, then shuffle.
+Quote [Limited Edition Alpha printed text — Demonic Tutor, complete, released 1993-08-05]: You may search your library for one card and take it into your hand. Reshuffle your library afterwards.
+Quote [CR 108.1, CR 2026-08-07 and CR 2026-09-25]: Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com.
+Quote [Glossary term "Oracle", complete]: The reference that contains the up-to-date wordings (in English) for all tournament-legal cards. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com. See rule 108.1.
+Quote [Ruling 2004-10-04 — Demonic Tutor]: You pick a card on resolution.
+Quote [Ruling 2004-10-04 — Demonic Tutor]: You don't reveal the card to your opponent.
+Quote [Ruling 2004-10-04 — Demonic Tutor]: This card is put directly into your hand. It is not drawn.
+Quote [Verified adjudication case case.pvo-LEA-Demonic-Tutor, expected verdict]: Current Oracle text governs under CR 108.1: "Search your library for a card, put that card into your hand, then shuffle." The answer must reproduce this text completely and name the printing it overrules.
+Rules: 108.1, 101.1
+Conflict: The Limited Edition Alpha printed text (and the identical Beta and Unlimited printings) is overruled by the current Oracle wording; Oracle wins because CR 108.1 directs that the Oracle card reference be used to determine a card's wording, which is the same precedence logic the retrieved case applies. The dataset's own text-difference record for these three printings is reviewState "nonfunctional" at similarity 0.35, i.e. the rewording is treated as not changing the card's function even though the sentence on the physical card reads differently.
+Sources: card.82004860-e589-4e38-8d61-8c0210e4ea39, printing.711d4d54-5520-4de8-9b93-79902ed8e562, printing.a5e571ef-1645-4584-ab53-e7ea5d443dea, printing.c8d5d6a5-6807-4a80-9460-7633dc430ee9, diff.printing.711d4d54-5520-4de8-9b93-79902ed8e562, diff.printing.a5e571ef-1645-4584-ab53-e7ea5d443dea, diff.printing.c8d5d6a5-6807-4a80-9460-7633dc430ee9, case.pvo-LEA-Demonic-Tutor, rule.108.1.2026-08-07, rule.108.1.2026-09-25, rule.101.1.2026-08-07, rule.101.1.2026-09-25, glossary.Oracle
+
+--- A08 ---
+QUESTION
+My Limited Edition Alpha copy of Benalish Hero reads "Bands". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)" The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+
+Verdict: The Alpha printing's text "Bands" is superseded — the card functions as its current Oracle text, Banding, with the full reminder text about bands, group blocking, and damage assignment.
+
+Missing: None
+
+Why: The Oracle card reference, not the wording printed on your Limited Edition Alpha copy, determines what a card does, and the Oracle text for Benalish Hero spells out Banding in the reminder text rather than the one-word "Bands" of the 1993 printing. The dataset also contains a verified adjudication case for this exact question (Alpha Benalish Hero reading "Bands"), which confirms Oracle governs and directs that the Oracle text be reproduced in full and the overruled printing named. No reviewed `decision` document exists for this card, so the verified adjudication case is the highest-authority reviewed source available here.
+
+Governing authority: Current Oracle text, under CR 108.1 (which was retrieved verbatim: use the Oracle card reference when determining a card's wording).
+
+Quote Oracle text (complete): "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)"
+
+Quote Printed text — Limited Edition Alpha (complete): "Bands"
+
+Quote Printed text — Fifth Edition, for contrast (complete): "Banding"
+
+Quote Glossary — Banding, "Bands with Other" (complete): "Banding is a keyword ability that modifies the rules for declaring attackers and assigning combat damage. "Bands with other" is a specialized version of the ability. See rule 702.22, "Banding.""
+
+Quote Rule 108.1 (complete): "Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com."
+
+Quote Adjudication case verdict (complete): "Current Oracle text governs under CR 108.1: "Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)" The answer must reproduce this text completely and name the printing it overrules."
+
+Rules: 108.1
+
+Conflict: The Alpha/Unlimited/Beta text "Bands" and the Fourth/Fifth Edition text "Banding" disagree with the current Oracle text; the Oracle wording wins under CR 108.1. Separately, the glossary entry directs the reader to rule 702.22, but that rule paragraph was not present in the retrieved material, so I am not quoting or relying on its text — the operative Banding behavior here comes from the Oracle reminder text itself.
+
+Sources: card.4c81cfb7-8765-4e28-ae33-4287fa9a86cc, printing.11600105-56c6-4073-a4a6-8469030b39c9, printing.fd204832-5f3b-4213-9c06-b89a296a9d47, diff.printing.11600105-56c6-4073-a4a6-8469030b39c9, glossary.Banding---Bands-with-Other-, rule.108.1.2026-09-25, case.pvo-LEA-Benalish-Hero
+
+--- A09 ---
+QUESTION
+My Unlimited Edition copy of Ice Storm reads "Destroys any one land.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Destroy target land." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Your Unlimited Edition copy's wording is obsolete; Ice Storm is a sorcery whose current Oracle text reads "Destroy target land."
+Missing: None
+Why: The Unlimited Edition printing states its effect without the word "target", while the current Oracle wording uses the modern templating "Destroy target land." The Oracle wording is the authoritative text for the card today, so that is what the card does. The legality claims in the retrieved evidence are about format playability and do not affect what the card does.
+Governing authority: Current Oracle text for Ice Storm (card document), which supersedes the printed wording on older printings.
+Quote [Ice Storm — current Oracle text]: Ice Storm
+Sorcery
+Destroy target land.
+Quote [Ice Storm — Unlimited Edition printed text]: Destroys any one land.
+Rules: None
+Conflict: The Unlimited Edition printed text "Destroys any one land." disagrees with the current Oracle text "Destroy target land."; the Oracle text wins, so the printed wording on your copy is not what the card does now.
+Sources: card.a0b97e33-2d0c-4800-a9f5-9cd9be651ea8, printing.2ec2246d-8bea-43c4-bf7f-2acad363e0af
+
+--- A10 ---
+QUESTION
+My Unlimited Edition copy of Ice Storm reads "Destroys any one land.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Destroy target land." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Your Unlimited Edition Ice Storm reads "Destroys any one land," but the card is played using its current Oracle text, "Destroy target land."
+Missing: None
+Why: Oracle is the authoritative wording for a card regardless of which printing you hold, so the green sorcery does exactly what Oracle says and not what the cardboard says. The functional change is in targeting: the printed wording picked a land as part of the effect ("any one land"), whereas Oracle makes the land a target chosen as you cast the spell. Because it now targets, the spell can be stopped by hexproof or shroud on the land, needs a legal target to be cast at all, and fizzles if that target becomes illegal before resolution. Note that the Ice Storm decision document in this corpus is flagged model-assisted and not confirmed by a human, and the card carries no rulings, so that specific consequence list rests on a draft rather than a verified adjudication.
+Governing authority: Current Oracle text (Scryfall Oracle Cards bulk export, current as of 2026-09-18), under CR 108.1.
+Quote Oracle text: "Destroy target land."
+Quote Printed text (Unlimited Edition, 2ED #202, Dan Frazier): "Destroys any one land."
+Quote Rule 108.1 (CR 2026-09-25): "Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com."
+Quote Decision decision.Ice-Storm.0.167 (draft, unconfirmed): "Oracle governs under CR 108.1. Untargeted became targeted. It can now be stopped by hexproof or shroud and fizzles if the land becomes an illegal target."
+Rules: 108.1
+Conflict: Printed wording "Destroys any one land" versus Oracle "Destroy target land"; Oracle wins under CR 108.1, and the corpus's textDifference record for this printing classifies the difference as "functional" (similarity 0.167).
+Sources: card.a0b97e33-2d0c-4800-a9f5-9cd9be651ea8, printing.2ec2246d-8bea-43c4-bf7f-2acad363e0af, diff.printing.2ec2246d-8bea-43c4-bf7f-2acad363e0af, decision.Ice-Storm.0.167, rule.108.1.2026-09-25
+
+--- A11 ---
+QUESTION
+Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at the end of the phase?
+
+EXPECTED VERDICT
+You took one damage per unspent mana, which was called mana burn. That rule existed in 2005 and was eliminated by the Magic 2010 rules change in July 2009, so it does not apply today.
+
+ANSWER
+Question type: historical
+
+Verdict: Under the rules as they stood in 2005, unspent mana from Black Lotus caused "mana burn" — the player took 1 damage per unspent mana at the end of the phase.
+
+Missing: The 2005-era Comprehensive Rules paragraph itself is not in the corpus. The corpus holds only CR 2026-08-07 and CR 2026-09-25 (verified via the authority-source list), plus a glossary cross-reference, so the answer rests solely on the reviewed adjudication case, which cites no rule number and carries no effective date.
+
+Why: The only rules documents in this corpus are two 2026 Comprehensive Rules versions, and the Black Lotus card document contains no rulings. The reviewed decision document type holds no entry for this question, so the one verification-grade authority is the adjudication case whose question matches this one verbatim. It states the 2005 outcome and the date the rule was removed.
+
+Governing authority: Verified adjudication case `case.rv-Black-Lotus` (reviewState "verified"), the corpus's only authority bearing on 2005 rules; no 2005 Comprehensive Rules text is present.
+
+Quote [case.rv-Black-Lotus expectedVerdict]: You took one damage per unspent mana, which was called mana burn. That rule existed in 2005 and was eliminated by the Magic 2010 rules change in July 2009, so it does not apply today.
+
+Quote [Black Lotus current Oracle text]: {T}, Sacrifice this artifact: Add three mana of any one color.
+
+Quote [Black Lotus printed text, Unlimited Edition (2ED)]: Adds 3 mana of any single color of your choice to your mana pool, then is discarded. Tapping this artifact can be played as an interrupt.
+
+Rules: None retrieved (the corpus's rule set contains no mana-burn or mana-pool-emptying paragraph; the glossary term "Mana Pool" only cross-references rule 106.4, whose body text was not retrieved).
+
+Conflict: None. No source in the corpus contradicts the adjudication case's account of the 2005 rule; the case itself notes the rule no longer applies after the July 2009 Magic 2010 change, and no retrieved 2026 rule text speaks to mana burn either way.
+
+Sources: case.rv-Black-Lotus, card.5089ec1a-f881-4d55-af14-5d996171203b, printing.4a2e428c-dd25-484c-bbc8-2d6ce10ef42c, printing.b0faa7f2-b547-42c4-a810-839da50dadfe, glossary.Mana-Pool, source.cr.2026-08-07, source.cr.2026-09-25
+
+--- A12 ---
+QUESTION
+My Limited Edition Alpha copy of Demonic Tutor reads "You may search your library for one card and take it into your hand. Reshuffle your library afterwards.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Search your library for a card, put that card into your hand, then shuffle." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Your Alpha Demonic Tutor functions per its current Oracle text: "Search your library for a card, put that card into your hand, then shuffle."
+Missing: The Comprehensive Rules paragraph that assigns authority to current Oracle wording (CR 108.1) was not retrieved, so no rule number is cited for that point; the card's current text itself was retrieved in full.
+Why: The Alpha printing and the current Oracle wording describe the same effect, just phrased differently — one card from your library moves to your hand, and your library is shuffled. Neither version has the card revealed, and the official ruling confirms the card goes straight to hand rather than being drawn. The Alpha wording is a historical printing, not the text the card uses today.
+Governing authority: Current Oracle text for Demonic Tutor (card.82004860-e589-4e38-8d61-8c0210e4ea39), which is the authoritative wording for the card; the Alpha printing document records only the wording as originally printed.
+Quote [printing.711d4d54-5520-4de8-9b93-79902ed8e562] Demonic Tutor (Limited Edition Alpha): You may search your library for one card and take it into your hand. Reshuffle your library afterwards.
+Quote [card.82004860-e589-4e38-8d61-8c0210e4ea39] Demonic Tutor: Sorcery — Search your library for a card, put that card into your hand, then shuffle.
+Quote [card.82004860-e589-4e38-8d61-8c0210e4ea39#ruling2] Demonic Tutor ruling (2004-10-04): This card is put directly into your hand. It is not drawn.
+Rules: None (the only rule excerpts retrieved, CR 702.53a and CR 702.29e, concern transmute and typecycling and do not address printed wording versus Oracle wording)
+Conflict: The Alpha printing says "one card" and "take it into your hand... Reshuffle your library afterwards"; the current Oracle text says "a card," "put that card into your hand," and "then shuffle." The Oracle wording wins for play, and the difference is phrasing only — no functional change.
+Sources: printing.711d4d54-5520-4de8-9b93-79902ed8e562, card.82004860-e589-4e38-8d61-8c0210e4ea39, card.82004860-e589-4e38-8d61-8c0210e4ea39#ruling2
+
+--- A13 ---
+QUESTION
+Can I register Demonic Tutor today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Demonic Tutor is banned in historic as of 2026-09-18.
+Demonic Tutor is banned in legacy as of 2026-09-18.
+Demonic Tutor is legal in commander as of 2026-09-18.
+Demonic Tutor is legal in duel as of 2026-09-18.
+Demonic Tutor is legal in oathbreaker as of 2026-09-18.
+Demonic Tutor is restricted in timeless as of 2026-09-18.
+Demonic Tutor is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: As of the dated legality entries retrieved (2026-09-18), Demonic Tutor is registerable in Commander, Duel, Vintage and Timeless — restricted in Vintage and Timeless — and is not registerable in Historic, where it is banned.
+Missing: A definition of "restricted" and the copy limit it imposes (the corpus entries state the status but do not define it), confirmation of the current calendar date against the 2026-09-18 announcements, and legality status for any format not present in the retrieved evidence (e.g. Legacy, Modern, Standard, Pauper).
+Why: The only evidence retrieved is a set of per-format legality claims for this exact card, all dated 2026-09-18, plus the card's Oracle text and rulings. Those claims say legal in commander, legal in duel, banned in historic, restricted in vintage and restricted in timeless. No announcement or definition explaining what "restricted" permits when registering a deck was retrieved, so the copy count for Vintage and Timeless is not established here.
+Governing authority: The dated per-format legality claims for Demonic Tutor (card id 82004860-e589-4e38-8d61-8c0210e4ea39), which are the only retrieved documents that state registration status by format.
+Quote [Oracle text, Demonic Tutor]: Search your library for a card, put that card into your hand, then shuffle.
+Quote [printed text, Unlimited Edition]: You may search your library for one card and take it into your hand. Reshuffle your library afterwards.
+Quote [printed text, Limited Edition Alpha]: You may search your library for one card and take it into your hand. Reshuffle your library afterwards.
+Quote [printed text, Limited Edition Beta]: You may search your library for one card and take it into your hand. Reshuffle your library afterwards.
+Quote [legality, timeless]: Demonic Tutor is restricted in timeless as of 2026-09-18.
+Quote [legality, vintage]: Demonic Tutor is restricted in vintage as of 2026-09-18.
+Quote [legality, commander]: Demonic Tutor is legal in commander as of 2026-09-18.
+Quote [legality, duel]: Demonic Tutor is legal in duel as of 2026-09-18.
+Quote [legality, historic]: Demonic Tutor is banned in historic as of 2026-09-18.
+Rules: None
+Conflict: None
+Sources: claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.timeless, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.vintage, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.commander, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.duel, claim.legality.82004860-e589-4e38-8d61-8c0210e4ea39.historic, card.82004860-e589-4e38-8d61-8c0210e4ea39, card.82004860-e589-4e38-8d61-8c0210e4ea39#ruling0, card.82004860-e589-4e38-8d61-8c0210e4ea39#ruling1, card.82004860-e589-4e38-8d61-8c0210e4ea39#ruling2, printing.c8d5d6a5-6807-4a80-9460-7633dc430ee9, printing.711d4d54-5520-4de8-9b93-79902ed8e562, printing.a5e571ef-1645-4584-ab53-e7ea5d443dea
+
+--- A14 ---
+QUESTION
+My Limited Edition Beta copy of Sol Ring reads "Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "{T}: Add {C}{C}." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Your Limited Edition Beta Sol Ring now does only what its current Oracle text says — "{T}: Add {C}{C}."; the printed wording is entirely superseded.
+
+Missing: None
+
+Why: Oracle text, not the text on the physical card, is the authoritative wording for a card, and this card's Oracle text has been rewritten from the Beta text. The reviewed decision document for this exact card and printing says Oracle governs, that the answer must reproduce the Oracle text completely, and that the printing it overrules must be named — that printing is Limited Edition Beta (LEB, collector number 270). The corpus also flags the LEB printing as a "nonfunctional" text difference against the Oracle text (similarity 0.056). The printed interrupt clause has no counterpart anywhere in the current Oracle text.
+
+Governing authority: Current Oracle text of Sol Ring, under CR 108.1 ("Use the Oracle card reference when determining a card's wording"), as applied by the verified decision case.pvo-LEB-Sol-Ring.
+
+Quote [Oracle text, Sol Ring]: {T}: Add {C}{C}.
+
+Quote [Printed text, Limited Edition Beta (LEB) printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3), which is what your copy says]: Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.
+
+Quote [CR 108.1]: Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com.
+
+Rules: 108.1
+
+Conflict: The Limited Edition Beta printed text ("Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.") disagrees with the current Oracle text ("{T}: Add {C}{C}."). The Oracle text wins, because CR 108.1 directs that the Oracle card reference determines a card's wording.
+
+Sources: card.6ad8011d-3471-4369-9d68-b264cc027487, printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3, diff.printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3, case.pvo-LEB-Sol-Ring, rule.108.1.2026-09-25
+
+--- A15 ---
+QUESTION
+My Limited Edition Beta copy of Paralyze reads "Target creature is not untapped as normal during untap phase unless 4 mana are spent. Tap target creature when Paralyze is cast.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "Enchant creature When this Aura enters, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step. At the beginning of the upkeep of enchanted creature's controller, that player may pay {4}. If the player does, untap the creature." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Beta's Paralyze no longer functions as printed; under the current Oracle wording it taps the enchanted creature as it enters and lets that creature's controller pay {4} at the beginning of their upkeep to untap it during that upkeep.
+Missing: None. (No card rulings and no Comprehensive Rules paragraphs were retrieved, so the answer rests on the Oracle text alone.)
+Why: The printed Beta text makes the untap an event during the untap phase that happens "unless 4 mana are spent," with no controller specified and no option to decline. The Oracle wording instead makes tapping a triggered ability when the Aura enters, and makes untapping a separate optional triggered ability at the beginning of the enchanted creature's controller's upkeep — so the payment is made by that specific player, is optional, and occurs in the upkeep rather than in the untap phase. The retrieved Beta printing text also contains no enchant clause line and no type line was retrieved, so those elements of the physical card cannot be confirmed from this evidence.
+Governing authority: Current Oracle text for Paralyze (card.e9b4e857-39e5-4a06-89ad-3dd94b3f252a), which is the wording that defines the card's current functionality; no Comprehensive Rules paragraph supporting this was retrieved.
+Quote [Beta printing, printing.106d8401-f0e2-461e-b8ea-16d475db98da]: Target creature is not untapped as normal during untap phase unless 4 mana are spent. Tap target creature when Paralyze is cast.
+Quote [Current Oracle, card.e9b4e857-39e5-4a06-89ad-3dd94b3f252a]: Paralyze — Enchantment — Aura — Enchant creature — When this Aura enters, tap enchanted creature. — Enchanted creature doesn't untap during its controller's untap step. — At the beginning of the upkeep of enchanted creature's controller, that player may pay {4}. If the player does, untap the creature.
+Rules: None
+Conflict: The Beta printed wording (untap-phase payment of 4 mana as a condition on the natural untap, timing that payer unspecified) disagrees with the current Oracle wording (enters-the-battlefield tap trigger plus an optional upkeep payment of {4} by the enchanted creature's controller). The current Oracle wording wins.
+Sources: printing.106d8401-f0e2-461e-b8ea-16d475db98da, card.e9b4e857-39e5-4a06-89ad-3dd94b3f252a
+
+--- A16 ---
+QUESTION
+How does Time Vault's current Oracle text differ from what is printed on the Alpha card, and which governs?
+
+EXPECTED VERDICT
+The Alpha card reads that you untap it by skipping a turn. Current Oracle text instead says that if you would begin your turn while it is tapped you may skip that turn and untap it, and it adds that the artifact enters tapped. Oracle governs under CR 108.1.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Current Oracle text governs over the Alpha printed text, and the two differ in how Time Vault untaps and how the extra turn is taken.
+Missing: None
+Why: The Alpha card let you untap Time Vault at will by skipping a turn as an activated-style cost, and the tap ability simply granted an extra turn. The current Oracle text instead makes the untap an optional replacement effect that you choose as your turn would begin (only if the artifact is tapped), and the extra-turn ability now costs the tap symbol and the artifact enters tapped. Oracle governs over printed wording under CR 108.1, so the modern text is what is played. The only decision document on point is model-assisted and not human-confirmed, so I treat it as a reviewed draft rather than a settled holding.
+Governing authority: Current Oracle text, under CR 108.1 ("Use the Oracle card reference when determining a card's wording").
+Quote [Oracle — Time Vault, current]: This artifact enters tapped.
+This artifact doesn't untap during your untap step.
+If you would begin your turn while this artifact is tapped, you may skip that turn instead. If you do, untap this artifact.
+{T}: Take an extra turn after this one.
+Quote [Printed — Limited Edition Alpha (LEA, no. 274, released 1993-08-05)]: Tap to gain an additional turn after the current one. Time Vault doesn't untap normally during untap phase; to untap it, you must skip a turn. Time Vault begins tapped.
+Quote [CR 108.1]: Use the Oracle card reference when determining a card's wording. A card's Oracle text can be found using the Gatherer card database at Gatherer.Wizards.com.
+Quote [decision.Time-Vault.0.268, model-assisted draft]: Oracle governs under CR 108.1. Untapping changed from paying a skipped turn at will to an optional replacement when your turn would begin, which is why the notorious untap loops behave differently.
+Quote [Time Vault ruling, 2008-10-01]: The choice of whether or not to skip a turn is made as that turn would begin, and only if Time Vault is tapped at that time. If you choose to skip your turn, Time Vault untaps before anything else happens in the next turn.
+Quote [Time Vault ruling, 2008-10-01]: This wording means that you no longer end up skipping multiple turns if you find a way to activate the ability multiple times.
+Rules: 108.1
+Conflict: The Alpha printed text and the current Oracle text disagree on the untap mechanic: printed allows untapping by skipping a turn as an at-will choice, while Oracle makes it an optional replacement effect chosen as your turn would begin, and printed's "begins tapped" is reworded as "enters tapped." Oracle wins under CR 108.1.
+Sources: card.99d4d99d-cf56-45aa-aa39-a250695612f2, printing.902441dc-c976-4c92-b897-6376eaa0fe38, diff.printing.902441dc-c976-4c92-b897-6376eaa0fe38, decision.Time-Vault.0.268
+
+--- A17 ---
+QUESTION
+Under the rules as they stood in 2005, what happened to unspent mana from Black Lotus at the end of the phase?
+
+EXPECTED VERDICT
+You took one damage per unspent mana, which was called mana burn. That rule existed in 2005 and was eliminated by the Magic 2010 rules change in July 2009, so it does not apply today.
+
+ANSWER
+Question type: historical
+Verdict: Not enough evidence
+Missing: Any Comprehensive Rules text, Oracle wording, or ruling in effect in 2005 describing what happens to unspent mana at end of phase (e.g. mana-pool emptying and mana burn). The only rules texts retrieved are dated 2026-08-07 and 2026-09-25, and the only Black Lotus texts retrieved are the Alpha/Beta/Unlimited printings and the current Oracle wording — none from 2005.
+Why: The question is historical, so it must be answered from the rules and card wording effective on the date asked about. Every rules passage and card text I retrieved post-dates 2005 by roughly two decades, so none of them establishes the 2005 rule. I will not reconstruct the 2005 behaviour from memory.
+Governing authority: The Comprehensive Rules and Oracle wording in force in 2005 would decide this; the retrieved rules documents (2026-08-07, 2026-09-25) are not that authority.
+Quote [CR 500.5 — 2026-08-07 text, NOT the 2005 rules]: 500.5 As a step or phase ends, if there are effects that last until the end of that step or phase, those effects expire. Then any unspent mana left in a player’s mana pool empties. This is a turn-based action that doesn’t use the stack (see rule 703.4q).
+Quote [CR 106.4 — 2026-08-07 / 2026-09-25 text, NOT the 2005 rules]: 106.4 When an effect instructs a player to add mana, that mana goes into a player’s mana pool. From there, it can be used to pay costs immediately, or it can stay in the player’s mana pool as unspent mana. Each player’s mana pool empties at the end of each step and phase, and the player is said to lose this mana. Cards with abilities that produce mana or refer to unspent mana have received errata in the Oracle™ card reference to no longer explicitly refer to the mana pool.
+Quote [Black Lotus, Unlimited Edition printed text]: Black Lotus, as printed in Unlimited Edition: Adds 3 mana of any single color of your choice to your mana pool, then is discarded. Tapping this artifact can be played as an interrupt.
+Quote [Black Lotus, Limited Edition Alpha printed text]: Black Lotus, as printed in Limited Edition Alpha: Adds 3 mana of any single color of your choice to your mana pool, then is discarded. Tapping this artifact can be played as an interrupt.
+Quote [Black Lotus, Limited Edition Beta printed text]: Black Lotus, as printed in Limited Edition Beta: Adds 3 mana of any single color of your choice to your mana pool, then is discarded. Tapping this artifact can be played as an interrupt.
+Quote [Black Lotus, current Oracle text]: Black Lotus
+Artifact
+{T}, Sacrifice this artifact: Add three mana of any one color.
+Rules: 106.4, 500.5 (and 703.4q as referenced inside 500.5)
+Conflict: None among the retrieved documents; the conflict is between the question's date (2005) and the dates of the retrieved authorities (2026), and it cannot be resolved because no 2005-era document was retrieved.
+Sources: printing.4a2e428c-dd25-484c-bbc8-2d6ce10ef42c, printing.b0faa7f2-b547-42c4-a810-839da50dadfe, printing.b3a69a1c-c80f-4413-a6fd-ae54cabbce28, card.5089ec1a-f881-4d55-af14-5d996171203b, comprehensive-rules-2026-08-07.txt#106.4, comprehensive-rules-2026-09-25.txt#106.4, comprehensive-rules-2026-08-07.txt#500.5, claim.legality.5089ec1a-f881-4d55-af14-5d996171203b.commander, claim.legality.5089ec1a-f881-4d55-af14-5d996171203b.duel, claim.legality.5089ec1a-f881-4d55-af14-5d996171203b.legacy, claim.legality.5089ec1a-f881-4d55-af14-5d996171203b.oathbreaker, claim.legality.5089ec1a-f881-4d55-af14-5d996171203b.vintage
+
+--- A18 ---
+QUESTION
+Can I register Golgari Grave-Troll today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Golgari Grave-Troll is banned in modern as of 2026-09-18.
+Golgari Grave-Troll is legal in commander as of 2026-09-18.
+Golgari Grave-Troll is legal in duel as of 2026-09-18.
+Golgari Grave-Troll is legal in legacy as of 2026-09-18.
+Golgari Grave-Troll is legal in oathbreaker as of 2026-09-18.
+Golgari Grave-Troll is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: As of the dated legality records retrieved (2026-09-18), Golgari Grave-Troll can be registered in Commander, Duel, Legacy and Oathbreaker, is restricted in Vintage, and cannot be registered in Modern (banned) — but I cannot confirm that 2026-09-18 is "today," so the answer is not definite.
+Missing: Any evidence of the current date, and any legality entry for formats not listed in the retrieved records (e.g. Standard, Pioneer, Pauper and other formats). Nothing states whether the 2026-09-18 records are the ones in force today.
+Why: The retrieved format-legality records give one dated line per format for this card. They mark restricted in Vintage, banned in Modern, and legal in Commander, Duel, Legacy and Oathbreaker. No retrieved document gives an announcement effective date relative to today, so I can only report the state as of the date those records carry.
+Governing authority: The dated format legality records for Golgari Grave-Troll, which are the applicable authority for whether the card may be registered; card rulings are irrelevant to registration.
+Quote: None
+Rules: None
+Conflict: None
+Sources: claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.vintage, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.commander, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.duel, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.legacy, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.modern, claim.legality.686f4a37-b5e4-46d4-9e0e-11794b2d12cd.oathbreaker, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling0, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling1, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling2, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling4, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling6, card.686f4a37-b5e4-46d4-9e0e-11794b2d12cd#ruling7
+
+--- A19 ---
+QUESTION
+Can I register Sol Ring today, and in which formats? If it is restricted anywhere, say where.
+
+EXPECTED VERDICT
+Per current claims:
+Sol Ring is banned in duel as of 2026-09-18.
+Sol Ring is banned in legacy as of 2026-09-18.
+Sol Ring is banned in oathbreaker as of 2026-09-18.
+Sol Ring is legal in commander as of 2026-09-18.
+Sol Ring is restricted in vintage as of 2026-09-18.
+The answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so "since when" is "not enough evidence" absent a formatEvent.
+
+ANSWER
+Question type: legality
+Verdict: Sol Ring can be registered in Commander only; it is banned in Duel, Legacy, and Oathbreaker, and restricted in Vintage as of 2026-09-18.
+Missing: An effective date for any of these statuses. The legality source is Scryfall's "current state, undated" export and no formatEvent exists for Sol Ring, so "since when" cannot be answered. Nothing else is missing.
+Why: The reviewed case for this exact question resolves it from the current legality claims: Sol Ring is legal in commander, banned in duel, legacy and oathbreaker, and restricted in vintage. The only format where it is restricted is Vintage, and the only format where it may be registered is Commander. Because the governing legality source publishes current status without dates and the only two formatEvent documents in the corpus concern The Fantasticar, no effective date may be stated.
+Governing authority: The reviewed adjudication case case.leg-Sol-Ring (reviewState: verified, holdout: true), built on Scryfall card-legalities claims effective 2026-09-18; no Comprehensive Rules paragraph is required for this question.
+Quote [claim, commander]: "Sol Ring is legal in commander as of 2026-09-18."
+Quote [claim, duel]: "Sol Ring is banned in duel as of 2026-09-18."
+Quote [claim, legacy]: "Sol Ring is banned in legacy as of 2026-09-18."
+Quote [claim, oathbreaker]: "Sol Ring is banned in oathbreaker as of 2026-09-18."
+Quote [claim, vintage]: "Sol Ring is restricted in vintage as of 2026-09-18."
+Quote [reviewed case expectedVerdict]: "Per current claims:\nSol Ring is banned in duel as of 2026-09-18.\nSol Ring is banned in legacy as of 2026-09-18.\nSol Ring is banned in oathbreaker as of 2026-09-18.\nSol Ring is legal in commander as of 2026-09-18.\nSol Ring is restricted in vintage as of 2026-09-18.\nThe answer must NOT state an effective date unless a formatEvent supports one; Scryfall publishes current state without dates, so \"since when\" is \"not enough evidence\" absent a formatEvent."
+Rules: None
+Conflict: None between the claims and the reviewed case (they agree). The only gap is that no dated announcement or formatEvent supports an effective date for any Sol Ring status, so no date may be asserted.
+Sources: card.6ad8011d-3471-4369-9d68-b264cc027487, case.leg-Sol-Ring, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.commander, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.duel, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.legacy, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.oathbreaker, claim.legality.6ad8011d-3471-4369-9d68-b264cc027487.vintage, source.scryfall.legalities, source.scryfall.2026-09-18
+
+--- A20 ---
+QUESTION
+My Limited Edition Beta copy of Sol Ring reads "Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.". What does the card actually do now?
+
+EXPECTED VERDICT
+Current Oracle text governs under CR 108.1: "{T}: Add {C}{C}." The answer must reproduce this text completely and name the printing it overrules.
+
+ANSWER
+Question type: printedVsOracle
+Verdict: Not enough evidence
+Missing: The current Oracle wording for Sol Ring, and any current rulings or Comprehensive Rules material needed to state its current function.
+Why: The retrieved evidence contains only original printings of Sol Ring and other old cards, not Sol Ring’s current Oracle text. The question asks what the Limited Edition Beta copy does now, so the printed wording alone cannot support a definite answer.
+Governing authority: Current Oracle wording, because current Oracle text is the authoritative source for what a card does now.
+Quote [printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3 Sol Ring, Limited Edition Beta printed text]: Add 2 colorless mana to your mana pool. Tapping this artifact can be played as an interrupt.
+Rules: None
+Conflict: None
+Sources: printing.c0fb91ec-20a8-4c13-9469-18885b1ecca3

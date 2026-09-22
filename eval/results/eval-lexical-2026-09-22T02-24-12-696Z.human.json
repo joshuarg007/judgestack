@@ -1,0 +1,74 @@
+{
+  "sourceFile": "eval/results/eval-lexical-2026-09-22T02-24-12-696Z.json",
+  "model": "deepseek:deepseek-flash",
+  "condition": "lexical",
+  "scoredAt": "2026-09-22T02:45:35.007Z",
+  "summary": {
+    "scored": 10,
+    "total": 30,
+    "verdictCorrect": "1/10",
+    "reasoningUnsupported": "7/10"
+  },
+  "judgments": {
+    "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a": {
+      "hash": "5e25a014b36a2deeccb21ccc4584c525a683fdcc8123c71b79eeef099a87b00a",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83": {
+      "hash": "4f94f6bb04f8f10de34bb24318929ae878774c4a2b7edd64a8edd9e8ff021f83",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447": {
+      "hash": "09cd8738960186667d1cb729aa776cb2e49fb50f975aa2358b4f8cc25935f447",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20": {
+      "hash": "2523372ef4d5f8030dde1da8952a839c337fba5b9bbae9ac0c2da2ac9f727f20",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5": {
+      "hash": "5650273867654b270232c8eb8bab4af2d02c848ff8ba419639fee8c049afdeb5",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9": {
+      "hash": "61cffc93d2b66f34cffc8bec8c4160b96d5365bd02ce3058d322b4cd43191ba9",
+      "verdictCorrect": true,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a": {
+      "hash": "68131f32af0687787eb48d9ba6b2efb8bca2472ce774ffde6c6faade2b43db7a",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    },
+    "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71": {
+      "hash": "13c8dd0434e6a4918973fa22510e244cfbcc7225c9e32ab18947b482bcdadc71",
+      "verdictCorrect": false,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "76357a479e198943df5f14fb494d719fddb7314a2da83b0471e2e9baefb6b15f": {
+      "hash": "76357a479e198943df5f14fb494d719fddb7314a2da83b0471e2e9baefb6b15f",
+      "verdictCorrect": false,
+      "reasoningUnsupported": false,
+      "note": ""
+    },
+    "2755164dd9e0e7fa8059249818ba0d280607f516a9ff199378cc53e97e60919d": {
+      "hash": "2755164dd9e0e7fa8059249818ba0d280607f516a9ff199378cc53e97e60919d",
+      "verdictCorrect": false,
+      "reasoningUnsupported": true,
+      "note": ""
+    }
+  }
+}

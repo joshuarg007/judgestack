@@ -26,7 +26,9 @@
     "apply:assisted": "tsx scripts/apply-assisted.ts",
     "smoke:planned": "tsx eval/planned-smoke.ts",
     "slice:planned": "JUDGESTACK_RETRIEVAL=planned tsx eval/run-slice.ts",
-    "score:hand": "tsx eval/score-by-hand.ts"
+    "score:hand": "tsx eval/score-by-hand.ts",
+    "blind:pack": "tsx eval/blind-pack.ts",
+    "blind:score": "tsx eval/blind-score.ts"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2",
