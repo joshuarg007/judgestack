@@ -39,8 +39,13 @@ for (const [i, c] of cases.entries()) {
   try {
     const r = await answer(c.question, rig)
     const score = scoreOne(c, { answer: r.answer, retrievedIds: r.retrievedIds, retrievedText: r.evidenceForScoring })
+    // retrievedIds and the evidence are persisted so every deterministic metric can
+    // be recomputed from the artifact. Without them dateDiscipline was unauditable:
+    // the row recorded a pass with no way to see which documents earned it.
     row = { ...score, latencyMs: r.latencyMs, typedOk: !!r.typed, typedError: r.typedError,
-            noRetrieval: r.noRetrieval, question: c.question, answer: r.answer }
+            noRetrieval: r.noRetrieval, question: c.question, answer: r.answer,
+            retrievedIds: r.retrievedIds, retrievedRuleNumbers: r.retrievedRuleNumbers,
+            toolCalls: r.toolCalls }
   } catch (e) {
     row = { hash: c.hash, questionType: c.questionType, error: (e as Error).message,
             requiredRulesCited: false, requiredCardsRetrieved: false, citedRulesWereRetrieved: false,

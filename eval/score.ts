@@ -36,6 +36,14 @@ export function scoreOne(c: Case, r: Run) {
     c.questionType !== 'printedVsOracle' ? null : quote ? norm(r.answer).includes(norm(quote)) : null
 
   // Legality: do not assert "since"/"effective" dates unless a formatEvent was retrieved.
+  //
+  // KNOWN DEFECT, do not cite the resulting number. This checks only that SOME
+  // formatEvent was retrieved, never that it concerns the card being asked about.
+  // The corpus holds two formatEvents, both for one unrelated card, so an answer can
+  // assert a date and still pass by having touched an irrelevant document. The metric
+  // also conflates "as of <observation date>", which is correct, with "effective
+  // <date>", which is the thing it is supposed to catch. Both need fixing before this
+  // number means anything.
   const assertsDate = /\b(since|effective|as of)\b[^.]{0,40}\b(19|20)\d{2}\b/i.test(r.answer)
   const hasFormatEvent = r.retrievedIds.some((id) => id.startsWith('formatEvent'))
   const dateDiscipline = c.questionType !== 'legality' ? null : !assertsDate || hasFormatEvent
