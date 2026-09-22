@@ -96,3 +96,50 @@ The plan is the model's. The queries are ours. That distinction belongs in the w
 One identical prompt through both Context endpoints. Three criteria are checked
 automatically; four need a human. On a pass, go to the 30-question evaluation,
 not another planning revision.
+
+## Integration notes
+
+Things that cost hours, recorded so they cost someone else less.
+
+**Context needs more than a deployed schema, in this project.** `sanity schema deploy`
+reported success and the endpoint still returned HTTP 400: *"Only datasets with deployed
+Studio applications are supported. Please deploy a Studio (v5.1.0+)."* Running
+`sanity deploy` resolved it here. Sanity's documentation identifies a deployed schema as
+the requirement, so this may be environment specific or a beta wrinkle rather than a
+universal rule. `sanity deploy` also needs `styled-components` installed.
+
+**Transport.** Context MCP speaks JSON-RPC over Streamable HTTP. Connecting with the
+legacy SSE transport returned 405 here, so `agent/mcp.ts` uses `type: 'http'`.
+
+**Duplicate schema validators.** In this lockfile `ai@5.0.261` with `@ai-sdk/mcp@1.0.82`
+resolved `@ai-sdk/provider-utils` 3.x and 4.x simultaneously, and every MCP tool call
+failed validating `{}` with *"value is not a function"*. Every `@ai-sdk/mcp` 1.x release
+checked requires provider-utils 4.x, so on `ai@5` the structured condition could not work.
+`ai@6` plus `@ai-sdk/openai-compatible@2` fixes it, with an `overrides` entry pinning one
+provider-utils copy.
+
+**Colliding tool names.** Both endpoints expose `initial_context`. Merging tool sets with
+an object spread shadows one of them silently. `mergeTools` in `agent/retrieval.ts`
+namespaces only the names that actually collide.
+
+**Tool output is nested.** MCP returns payloads inside `content[].text`, so stringifying a
+tool result escapes every quote and document ids never match `"_id":"..."`. Rule numbers
+still match, being bare digits, which makes a parsing bug look like a retrieval failure.
+Flatten tool output to text before extracting ids.
+
+**Weak local models and tool arguments.** Qwen3 under Ollama emits invalid argument JSON
+even for zero-argument tools, which the SDK rejects before execution. `agent/repair.ts`
+repairs that deterministically without inventing argument values, and is applied only to
+local providers.
+
+## Known defect: the dateDiscipline metric
+
+`dateDiscipline` in `eval/score.ts` passes whenever *any* `formatEvent` was retrieved. It
+never checks that the announcement concerns the card being asked about, and the corpus
+holds two `formatEvent` documents, both for a single unrelated card. It also treats
+"as of <observation date>", which is correct, the same as "effective <date>", which is the
+error it exists to catch.
+
+Eval rows also persisted `retrievedCount` but not `retrievedIds`, so the metric could not
+be recomputed from its own artifacts. Persistence is fixed; the metric is not. **Do not
+cite the resulting number until both are addressed and the suite is re-run.**
