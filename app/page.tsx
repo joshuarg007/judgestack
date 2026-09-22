@@ -139,7 +139,7 @@ export default function Page() {
       {loading && (
         <div className="card status">
           <p>Searching the rules, the card records and the format lists, then checking which one governs.</p>
-          <p className="meta">Running on a local model, so this takes a while.</p>
+          <p className="meta">Each lookup is a separate query against the content, so this takes a while.</p>
         </div>
       )}
 
